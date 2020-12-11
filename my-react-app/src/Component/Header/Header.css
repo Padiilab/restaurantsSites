@@ -1,0 +1,10 @@
+.HeaderLink{
+    font-weight: 400;
+    font-style: normal;
+    font-size: 20px;
+    padding-right: .5rem;
+    margin-left: 64px;
+}
+.headerContainer{
+    max-height: 100px;
+}

@@ -1,0 +1,17 @@
+.containerHome{
+    max-width: 1536px;
+    /*width: 1536px;*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    vertical-align: center;
+}
+.wrapperHome{
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.spinner{
+    vertical-align: center;
+}
