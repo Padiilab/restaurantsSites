@@ -1,0 +1,17 @@
+.footer {
+    height: 100px;
+    text-align: center;
+    padding: 0;
+    width: 100vw;
+    max-width: 1500px;
+    background: #FDF8F5;
+    box-shadow: 0 0 10px #4F4846;
+}
+.contentFooter{
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    vertical-align: center;
+    z-index: 1000;
+
+}

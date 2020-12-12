@@ -1,9 +1,23 @@
+.content:after {
+    content: "";
+    display: block;
+}
+.content{
+    min-height: calc(100vh - 100px);
+}
+.contentHome{
+    min-height: calc(100vh - 150px);
+}
 .containerHome{
-    max-width: 1536px;
+    min-height: 100%;
+    max-width: 1500px;
+    box-shadow: 0 0 10px #4F4846;
     /*width: 1536px;*/
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100vw;
+    background-color: #E8CEBF;
     vertical-align: center;
 }
 .wrapperHome{
@@ -11,7 +25,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
 }
 .spinner{
     vertical-align: center;
+}
+#root{
+    min-height: 100vh;
+
 }
