@@ -38,8 +38,7 @@
 .product-wrap {
     box-shadow: 0 0 10px #4F4846;
     width: 300px;
-    margin-top: 30px;
-    margin-bottom: 30px;
+    margin: 30px;
     background: #266150;
     padding: 0 0 20px;
     text-align: center;
@@ -97,6 +96,10 @@
     display: block;
     position: relative;
     transition: .3s ease-in-out;
+}
+.contentRest{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
 }
 .product-title a:after{
     content: "";
