@@ -1,7 +1,6 @@
 import React,{Component} from "react";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
-import spinner from "../Home/Images/spinner1.gif";
 export default class about extends Component {
     render() {
         return (

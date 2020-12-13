@@ -1,11 +1,9 @@
 import React, {Component} from "react";
-import spinner from './Images/spinner1.gif'
 import 'bootstrap';
 import './Home.css'
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import axios from 'axios';
-axios.defaults.headers.get['Content-Type'] ='application/x-www-form-urlencoded';
 
 export default class home extends Component {
     render() {
