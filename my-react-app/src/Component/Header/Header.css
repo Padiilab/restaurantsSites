@@ -8,6 +8,7 @@
 }
 .headerContainer{
     vertical-align: center;
+    z-index: 999999;
     display: flex;
     justify-content: center;
     position: sticky;
