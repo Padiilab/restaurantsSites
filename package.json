@@ -13,6 +13,7 @@
     "@testing-library/user-event": "^12.5.0",
     "add": "^2.0.6",
     "axios": "^0.21.0",
+    "gh-pages": "^3.1.0",
     "jQuery": "^1.7.4",
     "jquery": "^3.5.1",
     "node-jquery": "^0.1.0",
@@ -26,6 +27,8 @@
     "web-vitals": "^0.2.4"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

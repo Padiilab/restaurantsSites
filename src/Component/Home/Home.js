@@ -33,8 +33,8 @@ export default class home extends Component {
                         </div>
                     </div>
                     <div className="product-title">
-                        <a href="">{this.state.listRestaurants[index].name}</a>
-                        <span className="product-price">Ценовая политика:{this.state.listRestaurants[index].price_range}</span>
+                        <a target={"_blank"} href={this.state.listRestaurants[index].website}>{this.state.listRestaurants[index].name}</a>
+                        <span className="product-price">Цены:{this.state.listRestaurants[index].price_range}</span>
                         <br/>
                         <span className="product-price">Город: {this.state.listRestaurants[index].location}</span>
                     </div>
