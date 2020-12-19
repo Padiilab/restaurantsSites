@@ -1,24 +1,26 @@
 import React, {Component} from "react";
-import 'bootstrap';
 import './Home.css'
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import axios from 'axios';
 
 export default class home extends Component {
-    state={
-        listRestaurants:[]
+    state= {
+        listRestaurants: []
     }
     render() {
         let listRestaurants;
-        axios.get('http://127.0.0.1:8000/api/v1/restaurants' )
-            .then((response) => {
-                // handle success
-                if(this.state.listRestaurants!==response.data.restaurants){
-                    this.setState({listRestaurants:response.data.restaurants})
-                }
 
-            })
+        if(this.state.listRestaurants.length===0) {
+            axios.get('https://restaurants-database.herokuapp.com/api/v1/restaurants/')
+                .then((response) => {
+                    // handle success
+                    if (this.state.listRestaurants !== response.data.restaurants) {
+                        this.setState({listRestaurants: response.data.restaurants})
+                    }
+
+                })
+        }
         let renderList=[];
         for (let index in this.state.listRestaurants){
             renderList.push(
@@ -48,7 +50,7 @@ export default class home extends Component {
                         <div className={"container containerHome"}>
                             <div className={"contentHome"}>
                                 <div className={"contentRest"}>
-                                {renderList}
+                                    {renderList}
                                 </div>
                             </div>
 
