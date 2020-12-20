@@ -3,15 +3,72 @@ import './Home.css'
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import axios from 'axios';
+import 'react-bootstrap';
+import Swal from 'sweetalert2'
 
 export default class home extends Component {
-    state= {
+    state = {
         listRestaurants: []
     }
+    deleteCurrentRestaurant=(index)=>{
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios.delete(`https://restaurants-database.herokuapp.com/api/v1/restaurants/${this.state.listRestaurants[index].id}`)
+                    .then((response) => {
+                        this.updateListRestaurants();
+                        Swal.fire(
+                            'Deleted!',
+                            'Your file has been deleted.',
+                            'success'
+                        )
+                    })
+                    .catch(()=>{
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Something went wrong!',
+                    })
+                });
+            }
+        })
+
+
+    }
+    createNewRestaurant = () => {
+
+    }
+    updateListRestaurants = () => {
+        axios.get('https://restaurants-database.herokuapp.com/api/v1/restaurants/')
+            .then((response) => {
+                // handle success
+                if (this.state.listRestaurants !== response.data.restaurants) {
+                    this.setState({listRestaurants: response.data.restaurants})
+                }
+
+            });
+    }
+    renderWebsite = (index) => {
+        if (this.state.listRestaurants[index].website) {
+            return (
+                <div className="product-buttons">
+
+                    <a target={"_blank"} href={this.state.listRestaurants[index].website} className="button">Сайт</a>
+                </div>)
+        }
+    }
+
     render() {
         let listRestaurants;
 
-        if(this.state.listRestaurants.length===0) {
+        if (this.state.listRestaurants.length === 0) {
             axios.get('https://restaurants-database.herokuapp.com/api/v1/restaurants/')
                 .then((response) => {
                     // handle success
@@ -21,23 +78,24 @@ export default class home extends Component {
 
                 })
         }
-        let renderList=[];
-        for (let index in this.state.listRestaurants){
+        let renderList = [];
+        for (let index in this.state.listRestaurants) {
             renderList.push(
                 <div className="product-wrap">
                     <div className="product-item">
-                        <img alt={'restaurantPict'} src="https://media-cdn.tripadvisor.com/media/photo-s/14/07/c6/eb/elissa-bar-restaurant.jpg"/>
-                        <div className="product-buttons">
-
-                            <a href="" className="button">Отзывы</a>
-                        </div>
+                        <img alt={'restaurantPict'}
+                             src="https://media-cdn.tripadvisor.com/media/photo-s/14/07/c6/eb/elissa-bar-restaurant.jpg"/>
+                        {this.renderWebsite(index)}
                     </div>
                     <div className="product-title">
-                        <a target={"_blank"} href={this.state.listRestaurants[index].website}>{this.state.listRestaurants[index].name}</a>
-                        <span className="product-price">Цены:{this.state.listRestaurants[index].price_range}</span>
+                        <a href={""}>{this.state.listRestaurants[index].name}</a>
+                        <span className="product-price">Price: {this.state.listRestaurants[index].price_range}</span>
                         <br/>
-                        <span className="product-price">Город: {this.state.listRestaurants[index].location}</span>
+                        <span className="product-price">Location: {this.state.listRestaurants[index].location}</span>
+                        <br/>
+                        <i className="basketForDelete fas fa-trash-alt fa-lg" onClick={(event)=>this.deleteCurrentRestaurant(index,event)}/>
                     </div>
+
                 </div>
             )
         }
@@ -47,8 +105,14 @@ export default class home extends Component {
                     <Header/>
                     <div className={'wrapperHome'}>
 
-                        <div className={"container containerHome"}>
+                        <div className={"containerHome"}>
                             <div className={"contentHome"}>
+                                <button onClick={this.updateListRestaurants} type="button"
+                                        className={"updateList btn"}>Update list
+                                </button>
+                                <button onClick={this.createNewRestaurant} type="button"
+                                        className={"createRest btn"}>Add institution
+                                </button>
                                 <div className={"contentRest"}>
                                     {renderList}
                                 </div>

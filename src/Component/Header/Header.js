@@ -9,8 +9,8 @@ export default class header extends Component {
             <div className={'headerContainer'}>
                 <div className={"navbarWrapper"}>
                 <Navbar className={'headerRoute'}>
-                    <Link className={'HeaderLink'} to={'/'}>Главная</Link>
-                    <Link className={'HeaderLink'} to={'/about'}>Рестораны</Link>
+                    <Link className={'HeaderLink'} to={'/'}>Home</Link>
+                    <Link className={'HeaderLink'} to={'/about'}>Restaurants</Link>
                 </Navbar>
                 </div>
             </div>

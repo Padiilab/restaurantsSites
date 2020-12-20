@@ -118,3 +118,20 @@
     color: #FDF8F5;
     font-weight: 700;
 }
+.updateList{
+    background-color: #266150!important;
+    color: #E8CEBF!important;
+}
+.createRest{
+    background-color: cornflowerblue!important;
+    color: azure!important;
+}
+.basketForDelete{
+    margin-top: 10px;
+    color: #E8CEBF;
+    cursor: pointer;
+}
+.basketForDelete:hover{
+    color: white;
+
+}
