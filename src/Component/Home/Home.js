@@ -4,13 +4,15 @@ import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import axios from 'axios';
 import 'react-bootstrap';
-import Swal from 'sweetalert2'
+import Swal, {isLoading} from 'sweetalert2'
+import spinner from './Spinner-1s-200px.gif';
 
 export default class home extends Component {
     state = {
-        listRestaurants: []
+        listRestaurants: [],
+        isLoading: true,
     }
-    deleteCurrentRestaurant=(index)=>{
+    deleteCurrentRestaurant = (index) => {
         Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
@@ -30,13 +32,13 @@ export default class home extends Component {
                             'success'
                         )
                     })
-                    .catch(()=>{
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: 'Something went wrong!',
-                    })
-                });
+                    .catch(() => {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Something went wrong!',
+                        })
+                    });
             }
         })
 
@@ -46,13 +48,17 @@ export default class home extends Component {
 
     }
     updateListRestaurants = () => {
+        this.setState({isLoading: true});
         axios.get('https://restaurants-database.herokuapp.com/api/v1/restaurants/')
             .then((response) => {
                 // handle success
                 if (this.state.listRestaurants !== response.data.restaurants) {
-                    this.setState({listRestaurants: response.data.restaurants})
+                    this.setState({listRestaurants: response.data.restaurants, isLoading: false})
                 }
 
+            })
+            .catch(() => {
+                this.setState({isLoading: false});
             });
     }
     renderWebsite = (index) => {
@@ -73,10 +79,13 @@ export default class home extends Component {
                 .then((response) => {
                     // handle success
                     if (this.state.listRestaurants !== response.data.restaurants) {
-                        this.setState({listRestaurants: response.data.restaurants})
+                        this.setState({listRestaurants: response.data.restaurants,isLoading: false})
                     }
 
                 })
+                .catch(() => {
+                    this.setState({isLoading: false});
+                });
         }
         let renderList = [];
         for (let index in this.state.listRestaurants) {
@@ -93,7 +102,8 @@ export default class home extends Component {
                         <br/>
                         <span className="product-price">Location: {this.state.listRestaurants[index].location}</span>
                         <br/>
-                        <i className="basketForDelete fas fa-trash-alt fa-lg" onClick={(event)=>this.deleteCurrentRestaurant(index,event)}/>
+                        <i className="basketForDelete fas fa-trash-alt fa-lg"
+                           onClick={(event) => this.deleteCurrentRestaurant(index, event)}/>
                     </div>
 
                 </div>
@@ -113,9 +123,7 @@ export default class home extends Component {
                                 <button onClick={this.createNewRestaurant} type="button"
                                         className={"createRest btn"}>Add institution
                                 </button>
-                                <div className={"contentRest"}>
-                                    {renderList}
-                                </div>
+                                {this.spinnerOrRestaurants(renderList)}
                             </div>
 
                         </div>
@@ -126,5 +134,19 @@ export default class home extends Component {
 
             </>
         );
+    }
+
+    spinnerOrRestaurants = (renderList) => {
+        if (this.state.isLoading) {
+            return (
+                <div>
+                    <img className={'Spinner'} alt={'spinner'} src={spinner}/>
+                </div>);
+        } else {
+            return (
+                <div className={"contentRest"}>
+                    {renderList}
+                </div>);
+        }
     }
 }
