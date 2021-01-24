@@ -10,7 +10,7 @@ export default class header extends Component {
             <div className={'headerContainer'}>
                 <div className={"navbarWrapper"}>
                 <Navbar className={'headerRoute'}>
-                    <Link to={'/'}> <img className={'logoHeader'} src={logo} /></Link>
+                    <Link to={'/'}> <img  alt='logoHeader' className={'logoHeader'} src={logo} /></Link>
                     <Link className={'HeaderLink'} to={'/'}>Home</Link>
                     <Link className={'HeaderLink'} to={'/'}>Restaurants</Link>
                 </Navbar>

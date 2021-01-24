@@ -4,8 +4,7 @@ import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import axios from 'axios';
 import 'react-bootstrap';
-import Swal, {isLoading} from 'sweetalert2'
-import spinner from './Spinner-1s-200px.gif';
+import Swal from 'sweetalert2'
 
 export default class home extends Component {
     state = {
@@ -79,7 +78,7 @@ export default class home extends Component {
                 .then((response) => {
                     // handle success
                     if (this.state.listRestaurants !== response.data.restaurants) {
-                        this.setState({listRestaurants: response.data.restaurants,isLoading: false})
+                        this.setState({listRestaurants: response.data.restaurants, isLoading: false})
                     }
 
                 })
@@ -121,7 +120,7 @@ export default class home extends Component {
                                         className={"updateList btn"}>Update list
                                 </button>
                                 <button onClick={this.createNewRestaurant} type="button"
-                                        className={"createRest btn"}>Add institution
+                                        className={"updateList btn"}>Add
                                 </button>
                                 {this.spinnerOrRestaurants(renderList)}
                             </div>
@@ -140,13 +139,24 @@ export default class home extends Component {
         if (this.state.isLoading) {
             return (
                 <div>
-                    <img className={'Spinner'} alt={'spinner'} src={spinner}/>
+                    <div className={"mainSpinner spinner-grow text-secondary"}/>
                 </div>);
         } else {
-            return (
-                <div className={"contentRest"}>
-                    {renderList}
-                </div>);
+            if (renderList.length) {
+                return (
+                    <div className={"contentRest"}>
+                        {renderList}
+                    </div>);
+            } else {
+                return (
+                    <div className={"contentRest"}>
+                        <div>
+                            <i className="flagForNotFound far fa-flag"/>
+                            <h2>No restaurants found, please add first</h2>
+                        </div>
+                    </div>
+                )
+            }
         }
     }
 }
