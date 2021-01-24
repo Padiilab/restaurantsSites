@@ -7,16 +7,17 @@
 }
 .contentHome{
     min-height: calc(100vh - 150px);
+    width: 100%;
 }
 .containerHome{
     min-height: 100%;
-    max-width: 1500px;
+    max-width: 1536px;
     box-shadow: 0 0 10px #4F4846;
     /*width: 1536px;*/
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100vw;
+    width: 100%;
     background-color: #E8CEBF;
     vertical-align: center;
 }
@@ -98,7 +99,9 @@
 }
 .contentRest{
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fit, 350px);
 }
 .product-title a:after{
     content: "";

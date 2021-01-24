@@ -17,17 +17,20 @@
 }
 .navbarWrapper{
     box-shadow: 0 0 10px #4F4846;
-
-    width: 100vw;
+    width: 100%;
     background-color: #FDF8F5;
-    max-width: 1500px;
+    max-width: 1536px;
     height: 50px;
     max-height: 100px;
 }
 .headerRoute{
-    width: 100vw;
-    max-width: 1500px;
+    width: 100%;
+    max-width: 1536px;
     display: flex;
     vertical-align: center;
     justify-content: center;
+}
+.logoHeader{
+    height: 30px;
+    width: 30px;
 }
