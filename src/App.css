@@ -1,3 +1,4 @@
+
 .App {
   text-align: center;
 }
@@ -35,4 +36,37 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+
+@keyframes load8 {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.wrapperPreLoader{
+  height: 100vh;
+  background: #282c34;
+  flex-flow: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.wrapperPreLoader img{
+  position: absolute;
+}
+.wrapperPreLoader div{
+  height: 100px;
+  width: 100px;
+}
+.wrapperLogo{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.wrapperLogo:hover{
+
 }
