@@ -376,7 +376,6 @@ h2 {
 
 }
 .card__image:hover{
-    transform: rotate(360deg);
     height: 200px;
     width: 200px;
 }
