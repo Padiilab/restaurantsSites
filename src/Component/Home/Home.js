@@ -5,12 +5,18 @@ import Footer from "../Footer/Footer";
 import axios from 'axios';
 import 'react-bootstrap';
 import Swal from 'sweetalert2'
+import Tooltip from "react-bootstrap/Tooltip";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 
 export default class home extends Component {
-    state = {
-        listRestaurants: [],
-        isLoading: true,
+    constructor(props) {
+        super(props);
+        this.state = {
+            listRestaurants: [],
+            isLoading: true,
+        }
     }
+
     deleteCurrentRestaurant = (index) => {
         Swal.fire({
             title: 'Are you sure?',
@@ -89,21 +95,55 @@ export default class home extends Component {
         let renderList = [];
         for (let index in this.state.listRestaurants) {
             renderList.push(
-                <div className="product-wrap">
-                    <div className="product-item">
-                        <img alt={'restaurantPict'}
-                             src="https://media-cdn.tripadvisor.com/media/photo-s/14/07/c6/eb/elissa-bar-restaurant.jpg"/>
-                        {this.renderWebsite(index)}
+                <div className="cardRest">
+                    <img
+                        src="https://media-cdn.tripadvisor.com/media/photo-s/14/07/c6/eb/elissa-bar-restaurant.jpg"
+                        alt="Person" className="card__image"/>
+                    <p className="card__name">{this.state.listRestaurants[index].name}</p>
+                    <div className="grid-container">
+                        <OverlayTrigger
+                            placement="top-start"
+                            overlay={<Tooltip className="errorTooltip">Location</Tooltip>}
+                        >
+                            <div className="grid-child-posts">
+
+                                {this.state.listRestaurants[index].location}
+                            </div>
+                        </OverlayTrigger>
+
+
+                        <div className="grid-child-followers">
+                            1012 review
+                        </div>
+
                     </div>
-                    <div className="product-title">
-                        <a href={""}>{this.state.listRestaurants[index].name}</a>
-                        <span className="product-price">Price: {this.state.listRestaurants[index].price_range}</span>
-                        <br/>
-                        <span className="product-price">Location: {this.state.listRestaurants[index].location}</span>
-                        <br/>
-                        <i className="basketForDelete fas fa-trash-alt fa-lg"
-                           onClick={(event) => this.deleteCurrentRestaurant(index, event)}/>
-                    </div>
+                    <ul className="social-icons">
+                        <OverlayTrigger placement="top-start"
+                                        overlay={<Tooltip className="errorTooltip">price rating</Tooltip>}>
+                            <li><a href="#"><p
+                                className={'priceRange'}>{this.state.listRestaurants[index].price_range}</p></a></li>
+                        </OverlayTrigger>
+                        <OverlayTrigger
+                            placement="top-start"
+                            overlay={<Tooltip className="errorTooltip">Facebook</Tooltip>}
+                        >
+                            <li><a href="#"><i className="fab fa-facebook"/></a></li>
+                        </OverlayTrigger>
+                        <OverlayTrigger
+                            placement="top-start"
+                            overlay={<Tooltip className="errorTooltip">Web Site</Tooltip>}
+                        >
+                            <li><a href="#"><i className="fas fa-satellite"/></a></li>
+                        </OverlayTrigger>
+                        <OverlayTrigger
+                            placement="top-start"
+                            overlay={<Tooltip className="errorTooltip">Instagram</Tooltip>}
+                        >
+                            <li><a href="#"><i className="fab fa-instagram"/></a></li>
+                        </OverlayTrigger>
+                    </ul>
+                    <button className="btnCard draw-border">Review</button>
+                    <button className="btnCard draw-border">Edit</button>
 
                 </div>
             )
