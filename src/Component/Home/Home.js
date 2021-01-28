@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import './Home.css'
+import './Home.scss'
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import axios from 'axios';
@@ -7,6 +8,7 @@ import 'react-bootstrap';
 import Swal from 'sweetalert2'
 import Tooltip from "react-bootstrap/Tooltip";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import AddNewRestaurant from "./AddNewRestaurant.js";
 
 export default class home extends Component {
     constructor(props) {
@@ -17,6 +19,9 @@ export default class home extends Component {
         }
     }
 
+    onBackToHome = () => {
+        this.setState({isAddNew: false})
+    }
     deleteCurrentRestaurant = (index) => {
         Swal.fire({
             title: 'Are you sure?',
@@ -50,7 +55,7 @@ export default class home extends Component {
 
     }
     createNewRestaurant = () => {
-
+        this.setState({isAddNew: true});
     }
     updateListRestaurants = () => {
         this.setState({isLoading: true});
@@ -75,104 +80,137 @@ export default class home extends Component {
                 </div>)
         }
     }
+    updateListRestaurant = () => {
+        axios.get('https://restaurants-database.herokuapp.com/api/v1/restaurants/')
+            .then((response) => {
+                // handle success
+                this.setState({listRestaurants: response.data.restaurants, isLoading: false})
+
+            })
+            .catch(() => {
+                this.setState({isLoading: false});
+            });
+    }
 
     render() {
-        let listRestaurants;
+        if (!this.state.isAddNew) {
+            let listRestaurants;
 
-        if (this.state.listRestaurants.length === 0) {
-            axios.get('https://restaurants-database.herokuapp.com/api/v1/restaurants/')
-                .then((response) => {
-                    // handle success
-                    if (this.state.listRestaurants !== response.data.restaurants) {
-                        this.setState({listRestaurants: response.data.restaurants, isLoading: false})
-                    }
+            if (this.state.listRestaurants.length === 0) {
+                axios.get('https://restaurants-database.herokuapp.com/api/v1/restaurants/')
+                    .then((response) => {
+                        // handle success
+                        if (this.state.listRestaurants !== response.data.restaurants) {
+                            this.setState({listRestaurants: response.data.restaurants, isLoading: false})
+                        }
 
-                })
-                .catch(() => {
-                    this.setState({isLoading: false});
-                });
-        }
-        let renderList = [];
-        for (let index in this.state.listRestaurants) {
-            renderList.push(
-                <div className="cardRest">
-                    <img
-                        src="https://media-cdn.tripadvisor.com/media/photo-s/14/07/c6/eb/elissa-bar-restaurant.jpg"
-                        alt="Person" className="card__image"/>
-                    <p className="card__name">{this.state.listRestaurants[index].name}</p>
-                    <div className="grid-container">
-                        <OverlayTrigger
-                            placement="top-start"
-                            overlay={<Tooltip className="errorTooltip">Location</Tooltip>}
-                        >
-                            <div className="grid-child-posts">
+                    })
+                    .catch(() => {
+                        this.setState({isLoading: false});
+                    });
+            }
+            let renderList = [];
+            for (let index in this.state.listRestaurants) {
+                renderList.push(
+                    <div className="cardRest">
+                        <img
+                            src="https://media-cdn.tripadvisor.com/media/photo-s/14/07/c6/eb/elissa-bar-restaurant.jpg"
+                            alt="Person" className="card__image"/>
+                        <p className="card__name">{this.state.listRestaurants[index].name}</p>
+                        <div className="grid-container">
+                            <OverlayTrigger
+                                placement="top-start"
+                                overlay={<Tooltip className="errorTooltip">Location</Tooltip>}
+                            >
+                                <div className="grid-child-posts">
 
-                                {this.state.listRestaurants[index].location}
+                                    {this.state.listRestaurants[index].location}
+                                </div>
+                            </OverlayTrigger>
+
+
+                            <div className="grid-child-followers">
+                                {this.state.listRestaurants[index].review_quantity ? this.state.listRestaurants[index].review_quantity : 0} review
                             </div>
-                        </OverlayTrigger>
 
+                        </div>
+                        <ul className="social-icons">
+                            <OverlayTrigger placement="top-start"
+                                            overlay={<Tooltip className="errorTooltip">price rating</Tooltip>}>
+                                <li><a href="#"><p
+                                    className={'priceRange'}>{this.state.listRestaurants[index].price_range}</p></a>
+                                </li>
+                            </OverlayTrigger>
+                            <OverlayTrigger
+                                placement="top-start"
+                                overlay={<Tooltip className="errorTooltip">Facebook</Tooltip>}
+                            >
+                                <li><a href="#"><i className="fab fa-facebook"/></a></li>
+                            </OverlayTrigger>
+                            <OverlayTrigger
+                                placement="top-start"
+                                overlay={<Tooltip className="errorTooltip">Web Site</Tooltip>}
+                            >
+                                <li><a href={this.state.listRestaurants[index].website} target={"_blank"}><i
+                                    className="fas fa-satellite"/></a></li>
+                            </OverlayTrigger>
+                            <OverlayTrigger
+                                placement="top-start"
+                                overlay={<Tooltip className="errorTooltip">Instagram</Tooltip>}
+                            >
+                                <li><a href="#"><i className="fab fa-instagram"/></a></li>
+                            </OverlayTrigger>
+                        </ul>
+                        <button className="btnCard draw-border">Review</button>
+                        <button className="btnCard draw-border">Edit</button>
 
-                        <div className="grid-child-followers">
-                            1012 review
+                    </div>
+                )
+            }
+            return (
+                <>
+                    <div className={"content"}>
+                        <Header/>
+                        <div className={'wrapperHome'}>
+
+                            <div className={"containerHome"}>
+                                <div className={"contentHome"}>
+                                    <button onClick={this.updateListRestaurants} type="button"
+                                            className={"updateList btn"}>Update list
+                                    </button>
+                                    <button onClick={this.createNewRestaurant} type="button"
+                                            className={"updateList btn"}>Add
+                                    </button>
+                                    {this.spinnerOrRestaurants(renderList)}
+                                </div>
+
+                            </div>
                         </div>
 
                     </div>
-                    <ul className="social-icons">
-                        <OverlayTrigger placement="top-start"
-                                        overlay={<Tooltip className="errorTooltip">price rating</Tooltip>}>
-                            <li><a href="#"><p
-                                className={'priceRange'}>{this.state.listRestaurants[index].price_range}</p></a></li>
-                        </OverlayTrigger>
-                        <OverlayTrigger
-                            placement="top-start"
-                            overlay={<Tooltip className="errorTooltip">Facebook</Tooltip>}
-                        >
-                            <li><a href="#"><i className="fab fa-facebook"/></a></li>
-                        </OverlayTrigger>
-                        <OverlayTrigger
-                            placement="top-start"
-                            overlay={<Tooltip className="errorTooltip">Web Site</Tooltip>}
-                        >
-                            <li><a href="#"><i className="fas fa-satellite"/></a></li>
-                        </OverlayTrigger>
-                        <OverlayTrigger
-                            placement="top-start"
-                            overlay={<Tooltip className="errorTooltip">Instagram</Tooltip>}
-                        >
-                            <li><a href="#"><i className="fab fa-instagram"/></a></li>
-                        </OverlayTrigger>
-                    </ul>
-                    <button className="btnCard draw-border">Review</button>
-                    <button className="btnCard draw-border">Edit</button>
+                    <Footer/>
 
-                </div>
+                </>
+            );
+        } else {
+            return (
+                <>
+                    <div className={"content"}>
+                        <Header/>
+                        <div className={'wrapperHome'}>
+
+                            <div className={"containerHome"}>
+                                <AddNewRestaurant
+                                    updateListRestaurant={this.updateListRestaurant}
+                                    onBackToHome={this.onBackToHome}
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <Footer/>
+                </>
             )
         }
-        return (
-            <>
-                <div className={"content"}>
-                    <Header/>
-                    <div className={'wrapperHome'}>
-
-                        <div className={"containerHome"}>
-                            <div className={"contentHome"}>
-                                <button onClick={this.updateListRestaurants} type="button"
-                                        className={"updateList btn"}>Update list
-                                </button>
-                                <button onClick={this.createNewRestaurant} type="button"
-                                        className={"updateList btn"}>Add
-                                </button>
-                                {this.spinnerOrRestaurants(renderList)}
-                            </div>
-
-                        </div>
-                    </div>
-
-                </div>
-                <Footer/>
-
-            </>
-        );
     }
 
     spinnerOrRestaurants = (renderList) => {
