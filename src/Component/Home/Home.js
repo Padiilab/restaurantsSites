@@ -9,6 +9,7 @@ import Swal from 'sweetalert2'
 import Tooltip from "react-bootstrap/Tooltip";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import AddNewRestaurant from "./AddNewRestaurant.js";
+import EditPage from "./EditPage";
 
 export default class home extends Component {
     constructor(props) {
@@ -22,38 +23,7 @@ export default class home extends Component {
     onBackToHome = () => {
         this.setState({isAddNew: false})
     }
-    deleteCurrentRestaurant = (index) => {
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                axios.delete(`https://restaurants-database.herokuapp.com/api/v1/restaurants/${this.state.listRestaurants[index].id}`)
-                    .then((response) => {
-                        this.updateListRestaurants();
-                        Swal.fire(
-                            'Deleted!',
-                            'Your file has been deleted.',
-                            'success'
-                        )
-                    })
-                    .catch(() => {
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Oops...',
-                            text: 'Something went wrong!',
-                        })
-                    });
-            }
-        })
 
-
-    }
     createNewRestaurant = () => {
         this.setState({isAddNew: true});
     }
@@ -93,7 +63,7 @@ export default class home extends Component {
     }
 
     render() {
-        if (!this.state.isAddNew) {
+        if (!this.state.isAddNew && !this.state.editMode) {
             let listRestaurants;
 
             if (this.state.listRestaurants.length === 0) {
@@ -162,7 +132,10 @@ export default class home extends Component {
                             </OverlayTrigger>
                         </ul>
                         <button className="btnCard draw-border">Review</button>
-                        <button className="btnCard draw-border">Edit</button>
+                        <button onClick={() => {
+                            this.setState({editMode: true, editData :  this.state.listRestaurants[index]})
+                        }} className="btnCard draw-border">Edit
+                        </button>
 
                     </div>
                 )
@@ -192,7 +165,7 @@ export default class home extends Component {
 
                 </>
             );
-        } else {
+        } else if (this.state.isAddNew) {
             return (
                 <>
                     <div className={"content"}>
@@ -203,6 +176,24 @@ export default class home extends Component {
                                 <AddNewRestaurant
                                     updateListRestaurant={this.updateListRestaurant}
                                     onBackToHome={this.onBackToHome}
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <Footer/>
+                </>
+            )
+        } else {
+            return (
+                <>
+                    <div className={"content"}>
+                        <Header/>
+                        <div className={'wrapperHome'}>
+                            <div className={"containerHome"}>
+                                <EditPage
+                                    editData = {this.state.editData}
+                                    updateListRestaurant={this.updateListRestaurant}
+                                    onBackToHome = {()=>{this.setState({editMode:false})}}
                                 />
                             </div>
                         </div>

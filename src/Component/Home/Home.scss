@@ -22,11 +22,11 @@ $in-w: $n-char*($char-w + $gap);
   font-size: 1.3rem;
   color: $white;
   padding: 7px 0;
-  background: transparent!important;
+  background: transparent !important;
   transition: border-color 0.2s;
 
   &::placeholder {
-    color: transparent!important;
+    color: transparent !important;
   }
 
   &:placeholder-shown ~ .form__label {
@@ -49,6 +49,7 @@ $in-w: $n-char*($char-w + $gap);
   &:focus &:active {
     background: transparent;
   }
+
   ~ .form__label {
     position: absolute;
     top: 0;
@@ -56,29 +57,40 @@ $in-w: $n-char*($char-w + $gap);
     transition: 0.2s;
     font-size: 1rem;
     color: $primary;
-    font-weight:700;
+    font-weight: 700;
   }
+
   padding-bottom: 6px;
   font-weight: 700;
   border-width: 3px;
-  border-image: linear-gradient(to right, $primary,$secondary);
+  border-image: linear-gradient(to right, $primary, $secondary);
   border-image-slice: 1;
 }
+
 /* reset input */
-.form__field{
-  &:required,&:invalid { box-shadow:none; }
+.form__field {
+  &:required, &:invalid {
+    box-shadow: none;
+  }
 }
+
 /* demo */
-.addRestaurantWrapper{
+.addRestaurantWrapper {
   display: flex;
   flex-flow: column;
   justify-content: center;
   align-items: center;
   margin-bottom: 40px;
 }
-.submit{
-  color: white!important;
+
+.submit {
+  color: white !important;
   background: -webkit-linear-gradient(45deg, #bf4242, #460303);
 }
 
+.btnCard {
+  &:focus {
+    outline: 0;
+  }
+}
 
