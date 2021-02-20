@@ -67,14 +67,12 @@ $in-w: $n-char*($char-w + $gap);
   border-image-slice: 1;
 }
 
-/* reset input */
 .form__field {
   &:required, &:invalid {
     box-shadow: none;
   }
 }
 
-/* demo */
 .addRestaurantWrapper {
   display: flex;
   flex-flow: column;
@@ -93,4 +91,6 @@ $in-w: $n-char*($char-w + $gap);
     outline: 0;
   }
 }
-
+.ratingStar {
+  margin-top: 13px;
+}
