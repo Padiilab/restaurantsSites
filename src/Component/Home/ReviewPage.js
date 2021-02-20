@@ -90,11 +90,11 @@ export default class ReviewAdding extends Component {
                     </div>
 
                     <div className="form__group field">
-                        <textarea onBlur={(event) => {
+                        <input onBlur={(event) => {
                             this.setState({review: event.currentTarget.value})
-                        }} defaultValue={'Your Review'} type="input" className="form__field"
-                                  placeholder="Your review" name="name"
-                                  id='name' required/>
+                        }} type="input" className="form__field" placeholder="Your Name" name="name" id='name'
+                               required/>
+                        <label htmlFor="name" className="form__label">Your Review</label>
                     </div>
                     <div className="grid-child-posts">Set your rating :</div>
                     <StyledRating emptyIcon={<StarBorderIcon fontSize="inherit"/>} className={"ratingStar"}
