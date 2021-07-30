@@ -9,9 +9,11 @@ export default class Footer extends Component {
                 <div className={'footer'}>
                     <div>Created By:</div>
                     <br/>
-                    <a href={"https://github.com/Padiilab"} target={"_blank"}>FrontEnd: Mykola Padii</a>
+                    <a href="https://github.com/Padiilab" target="_blank">FrontEnd: Mykola Padii</a>
                     <br/>
-                    <a href={"https://github.com/Bohdlesk"} target={"_blank"}>BackEnd: Bohdan Leskovets</a>
+                    <a href="https://github.com/Bohdlesk" target="_blank">BackEnd: Bohdan Leskovets</a>
+                    <br/>
+                    <a href="https://github.com/IllyaPystovga" target="_blank">Trainee: Illya Pystovgar</a>
                     <br/>
                 </div>
             </div>
