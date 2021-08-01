@@ -35,7 +35,7 @@ export default class home extends Component {
     }
     updateListRestaurants = () => {
         this.setState({isLoading: true});
-        axios.get('https://restaurants-database.herokuapp.com/api/v1/restaurants/')
+        /*axios.get('https://restaurants-database.herokuapp.com/api/v1/restaurants/')
             .then((response) => {
                 // handle success
                 if (this.state.listRestaurants !== response.data.restaurants) {
@@ -45,7 +45,7 @@ export default class home extends Component {
             })
             .catch(() => {
                 this.setState({isLoading: false});
-            });
+            });*/
     }
     renderWebsite = (index) => {
         if (this.state.listRestaurants[index].website) {
@@ -62,17 +62,17 @@ export default class home extends Component {
             let listRestaurants;
 
             if (this.state.listRestaurants.length === 0) {
-                axios.get('https://restaurants-database.herokuapp.com/api/v1/restaurants/')
-                    .then((response) => {
-                        // handle success
-                        if (this.state.listRestaurants !== response.data.restaurants) {
-                            this.setState({listRestaurants: response.data.restaurants, isLoading: false})
-                        }
-
-                    })
-                    .catch(() => {
-                        this.setState({isLoading: false});
-                    });
+                // axios.get('https://restaurants-database.herokuapp.com/api/v1/restaurants/')
+                //     .then((response) => {
+                //         // handle success
+                //         if (this.state.listRestaurants !== response.data.restaurants) {
+                //             this.setState({listRestaurants: response.data.restaurants, isLoading: false})
+                //         }
+                //
+                //     })
+                //     .catch(() => {
+                //         this.setState({isLoading: false});
+                //     });
             }
             let renderList = [];
             for (let index in this.state.listRestaurants) {
