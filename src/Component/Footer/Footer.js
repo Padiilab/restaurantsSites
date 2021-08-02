@@ -13,7 +13,6 @@ export default class Footer extends Component {
       <div className={'contentFooter'}>
         <div className={'footer'}>
           <div>Created By:</div>
-          <br />
           <a href='https://github.com/Padiilab' target='_blank'>
             FrontEnd: Mykola Padii
           </a>

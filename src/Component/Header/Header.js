@@ -16,14 +16,10 @@ export default class header extends Component {
         <div className={'navbarWrapper'}>
           <Navbar className={'headerRoute'}>
             <Link to={'/'}>
-              {' '}
               <img alt='logoHeader' className={'logoHeader'} src={logo} />
             </Link>
             <Link className={'HeaderLink'} to={'/'}>
               Home
-            </Link>
-            <Link className={'HeaderLink'} to={'/'}>
-              Restaurants
             </Link>
           </Navbar>
         </div>

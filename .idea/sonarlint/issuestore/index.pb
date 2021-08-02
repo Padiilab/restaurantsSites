@@ -33,3 +33,19 @@ O
 .eslintcache,2\1\21d5732e90750915458158e179e86c3b1690252c
 N
 src/Component/Footer/Footer.js,d\5\d557d139968dbd4cd687a576cbdaaab9ecd5d4a0
+=
+src/index.css,c\5\c5d38a62d1faae90a2acaa34b79a7ef365c917e4
+?
+src/App.test.js,9\2\923703ced91ac38943d37930d9d27a7ebe8f01ad
+L
+src/Component/About/About.js,b\5\b5da44ed40181d548e0f70acb7773a8b3a756f62
+;
+src/App.css,a\a\aa7165aefcf8ee3d73539e99ab007daf1aa18d8d
+A
+package-lock.json,f\a\fa288d1472d29beccb489a676f68739ad365fc47
+F
+src/reportWebVitals.js,1\c\1ce5e63ae1582ed0b425c46001299a07515efbf9
+P
+ src/Component/Home/ReviewPage.js,1\9\19213c5229b7039a8e60900b5aa9491d1813c825
+4
+.env,3\c\3c84dcdc6bbe3d7817c49dcdc327b926fea1808a
