@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Swal from 'sweetalert2';
 import axios from 'axios';
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
 
 export default class AddNewRestaurant extends Component {
   constructor(props) {
@@ -44,7 +46,6 @@ export default class AddNewRestaurant extends Component {
                 timerProgressBar: true
               });
               this.props.updateListRestaurant();
-              this.props.onBackToHome();
             });
         }
       });
@@ -70,83 +71,90 @@ export default class AddNewRestaurant extends Component {
 
   render() {
     return (
-      <div className={'contentHome'}>
-        <button
-          onClick={this.props.onBackToHome}
-          type='button'
-          className={'updateList btn'}
-        >
-          Back
-        </button>
-        <div className={'addRestaurantWrapper'}>
-          <div className='form__group field'>
-            <input
-              onInput={(event) => {
-                this.setState({ name: event.currentTarget.value });
-              }}
-              type='input'
-              className='form__field'
-              placeholder='Name'
-              name='name'
-              id='name'
-              required
-            />
-            <label htmlFor='name' className='form__label'>
-              Name
-            </label>
-          </div>
-          <div className='form__group field'>
-            <input
-              onInput={(event) => {
-                this.setState({ location: event.currentTarget.value });
-              }}
-              type='input'
-              className='form__field'
-              placeholder='Location'
-              name='name'
-              id='name'
-              required
-            />
-            <label htmlFor='name' className='form__label'>
-              Location
-            </label>
-          </div>
-          <div className='form__group field'>
-            <input
-              onInput={(event) => {
-                this.setState({ webSite: event.currentTarget.value });
-              }}
-              type='input'
-              className='form__field'
-              placeholder='Web site'
-              name='name'
-              id='name'
-              required
-            />
-            <label htmlFor='name' className='form__label'>
-              Web site
-            </label>
-          </div>
-          <div className='form__group field'>
-            <input
-              maxLength={'1'}
-              onInput={this.onInputPriceRating}
-              type='input'
-              className='form__field'
-              placeholder='Price rating'
-              name='name'
-              id='name'
-              required
-            />
-            <label htmlFor='name' className='form__label'>
-              Price rating(1-5)
-            </label>
+      <>
+        <div className={'content'}>
+          <Header />
+          <div className={'wrapperHome'}>
+            <div className={'containerHome'}>
+              <div className={'contentHome'}>
+                <div className={'addRestaurantWrapper'}>
+                  <div className='form__group field'>
+                    <input
+                      onInput={(event) => {
+                        this.setState({ name: event.currentTarget.value });
+                      }}
+                      type='input'
+                      className='form__field'
+                      placeholder='Name'
+                      name='name'
+                      id='name'
+                      required
+                    />
+                    <label htmlFor='name' className='form__label'>
+                      Name
+                    </label>
+                  </div>
+                  <div className='form__group field'>
+                    <input
+                      onInput={(event) => {
+                        this.setState({ location: event.currentTarget.value });
+                      }}
+                      type='input'
+                      className='form__field'
+                      placeholder='Location'
+                      name='name'
+                      id='name'
+                      required
+                    />
+                    <label htmlFor='name' className='form__label'>
+                      Location
+                    </label>
+                  </div>
+                  <div className='form__group field'>
+                    <input
+                      onInput={(event) => {
+                        this.setState({ webSite: event.currentTarget.value });
+                      }}
+                      type='input'
+                      className='form__field'
+                      placeholder='Web site'
+                      name='name'
+                      id='name'
+                      required
+                    />
+                    <label htmlFor='name' className='form__label'>
+                      Web site
+                    </label>
+                  </div>
+                  <div className='form__group field'>
+                    <input
+                      maxLength={'1'}
+                      onInput={this.onInputPriceRating}
+                      type='input'
+                      className='form__field'
+                      placeholder='Price rating'
+                      name='name'
+                      id='name'
+                      required
+                    />
+                    <label htmlFor='name' className='form__label'>
+                      Price rating(1-5)
+                    </label>
+                  </div>
+                </div>
+                <button
+                  onClick={this.onCreate}
+                  type='button'
+                  className={'submit btn'}
+                >
+                  Create
+                </button>
+              </div>
+            </div>
           </div>
         </div>
-        <button onClick={this.onCreate} type='button' className={'submit btn'}>
-          Create
-        </button>
-      </div>
+        <Footer />
+      </>
     );
   }
 }

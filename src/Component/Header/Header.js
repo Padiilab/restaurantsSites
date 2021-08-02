@@ -18,8 +18,13 @@ export default class header extends Component {
             <Link to={'/'}>
               <img alt='logoHeader' className={'logoHeader'} src={logo} />
             </Link>
+
             <Link className={'HeaderLink'} to={'/'}>
               Home
+            </Link>
+
+            <Link className={'HeaderLink'} to={'/add'}>
+              Add
             </Link>
           </Navbar>
         </div>

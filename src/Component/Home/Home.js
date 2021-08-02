@@ -13,6 +13,7 @@ import Rating from '@material-ui/lab/Rating';
 import withStyles from '@material-ui/core/styles/withStyles';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import ReviewPage from './ReviewPage';
+import { Link } from 'react-router-dom';
 
 const StyledRating = withStyles({})(Rating);
 
@@ -48,21 +49,6 @@ export default class home extends Component {
       .catch(() => {
         this.setState({ isLoading: false });
       });
-  };
-  renderWebsite = (index) => {
-    if (this.state.listRestaurants[index].website) {
-      return (
-        <div className='product-buttons'>
-          <a
-            target={'_blank'}
-            href={this.state.listRestaurants[index].website}
-            className='button'
-          >
-            Сайт
-          </a>
-        </div>
-      );
-    }
   };
 
   render() {
@@ -210,32 +196,11 @@ export default class home extends Component {
                   >
                     Update list
                   </button>
-                  <button
-                    onClick={this.createNewRestaurant}
-                    type='button'
-                    className={'updateList btn'}
-                  >
+                  <Link to={'/add'} className={'updateList btn'}>
                     Add
-                  </button>
+                  </Link>
                   {this.spinnerOrRestaurants(renderList)}
                 </div>
-              </div>
-            </div>
-          </div>
-          <Footer />
-        </>
-      );
-    } else if (this.state.isAddNew) {
-      return (
-        <>
-          <div className={'content'}>
-            <Header />
-            <div className={'wrapperHome'}>
-              <div className={'containerHome'}>
-                <AddNewRestaurant
-                  updateListRestaurant={this.updateListRestaurants}
-                  onBackToHome={this.onBackToHome}
-                />
               </div>
             </div>
           </div>

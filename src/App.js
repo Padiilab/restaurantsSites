@@ -5,6 +5,7 @@ import about from './Component/About/About';
 import React, { Component } from 'react';
 import logo from './Component/Header/RestView.png';
 import Parallax from 'parallax-js';
+import AddNewRestaurant from './Component/Home/AddNewRestaurant';
 
 export default class App extends Component {
   state = {
@@ -43,6 +44,7 @@ export default class App extends Component {
         <Router>
           <switch>
             <Route exact path='/about' component={about} />
+            <Route exact path='/add' component={AddNewRestaurant} />
             <Route exact path='/' component={home} />
           </switch>
         </Router>

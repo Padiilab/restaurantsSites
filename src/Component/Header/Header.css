@@ -24,7 +24,6 @@
   max-height: 100px;
 }
 .headerRoute {
-  justify-content: center !important;
   width: 100%;
   max-width: 1536px;
   display: flex;
