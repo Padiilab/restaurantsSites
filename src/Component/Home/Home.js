@@ -125,16 +125,6 @@ export default class home extends Component {
               </OverlayTrigger>
               <OverlayTrigger
                 placement='top-start'
-                overlay={<Tooltip className='errorTooltip'>Facebook</Tooltip>}
-              >
-                <li>
-                  <a>
-                    <i className='fab fa-facebook' />
-                  </a>
-                </li>
-              </OverlayTrigger>
-              <OverlayTrigger
-                placement='top-start'
                 overlay={<Tooltip className='errorTooltip'>Web Site</Tooltip>}
               >
                 <li>
@@ -143,16 +133,6 @@ export default class home extends Component {
                     target={'_blank'}
                   >
                     <i className='fas fa-satellite' />
-                  </a>
-                </li>
-              </OverlayTrigger>
-              <OverlayTrigger
-                placement='top-start'
-                overlay={<Tooltip className='errorTooltip'>Instagram</Tooltip>}
-              >
-                <li>
-                  <a>
-                    <i className='fab fa-instagram' />
                   </a>
                 </li>
               </OverlayTrigger>

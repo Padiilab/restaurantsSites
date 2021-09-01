@@ -84,6 +84,11 @@ export default class AddNewRestaurant extends Component {
           Back
         </button>
         <div className={'addRestaurantWrapper'}>
+          <img
+            src='https://media-cdn.tripadvisor.com/media/photo-s/14/07/c6/eb/elissa-bar-restaurant.jpg'
+            alt='Person'
+            className='card_img'
+          />
           <div className='form__group field'>
             <input
               defaultValue={this.props.editData.name}
@@ -92,7 +97,7 @@ export default class AddNewRestaurant extends Component {
               }}
               type='input'
               className='form__field'
-              placeholder='Name'
+              placeholder='name'
               name='name'
               id='name'
               required

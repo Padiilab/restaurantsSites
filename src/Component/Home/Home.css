@@ -375,6 +375,11 @@ h2 {
   height: 200px;
   width: 200px;
 }
+.card_img {
+  height: 300px;
+  width: 300px;
+}
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus input:-webkit-autofill,
