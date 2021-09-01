@@ -49,3 +49,5 @@ P
  src/Component/Home/ReviewPage.js,1\9\19213c5229b7039a8e60900b5aa9491d1813c825
 4
 .env,3\c\3c84dcdc6bbe3d7817c49dcdc327b926fea1808a
+;
+.prettierrc,2\0\20137a9e94744624390b6748bc96df5ca1579b71

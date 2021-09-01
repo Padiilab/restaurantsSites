@@ -45,7 +45,6 @@ export default class AddNewRestaurant extends Component {
                 timer: 3000,
                 timerProgressBar: true
               });
-              this.props.updateListRestaurant();
             });
         }
       });
