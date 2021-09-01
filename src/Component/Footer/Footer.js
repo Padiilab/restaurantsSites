@@ -25,6 +25,9 @@ export default class Footer extends Component {
             Trainee: Illya Pystovgar
           </a>
           <br />
+          <a href='https://github.com/TonyLDV' target='_blank'>
+            Trainee: Anton Liediaiev
+          </a>
         </div>
       </div>
     );
