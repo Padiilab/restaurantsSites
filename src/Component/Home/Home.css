@@ -4,11 +4,11 @@
 }
 
 .content {
-  min-height: calc(100vh - 125px);
+  min-height: calc(100vh - 145px);
 }
 
 .contentHome {
-  min-height: calc(100vh - 175px);
+  min-height: calc(100vh - 195px);
   width: 100%;
 }
 

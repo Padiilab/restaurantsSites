@@ -11,37 +11,26 @@ export default class header extends Component {
     return (
       <div className={'headerContainer'}>
         <div className={'navbarWrapper'}>
-          <Navbar className={'headerRoute'}>
+          <Navbar collapseOnSelect expand='sm' className={'headerRoute'}>
             <Container fluid>
               <Link to={'/'}>
                 <img alt='logoHeader' className={'logoHeader'} src={logo} />
               </Link>
-
-              <Navbar.Toggle aria-controls='basic-navbar-nav' />
-
-              <Navbar.Collapse id='basic-navbar-nav'>
-                <Nav className='me-auto'>
-                  <Nav.Link className={'HeaderLink'} to={'/'}>
+              <Navbar.Toggle aria-controls='responsive-navbar-nav' />
+              <Navbar.Collapse id='responsive-navbar-nav'>
+                <Nav className='mr-auto'>
+                  <Link className={'HeaderLink'} to={'/'}>
                     Home
-                  </Nav.Link>
-                  <Nav.Link className={'HeaderLink'} to={'/'}>
-                    Home
-                  </Nav.Link>
-                  <Nav.Link className={'HeaderLink'} to={'/'}>
-                    Home
-                  </Nav.Link>
-                  <Nav.Link className={'HeaderLink'} to={'/'}>
-                    Home
-                  </Nav.Link>
-                  <Nav.Link className={'HeaderLink'} to={'/'}>
-                    Home
-                  </Nav.Link>
-                  <Nav.Link className={'HeaderLink'} to={'/'}>
-                    Home
-                  </Nav.Link>
-                  <Nav.Link className={'HeaderLink'} to={'/add'}>
+                  </Link>
+                  <Link className={'HeaderLink'} to={'/add'}>
                     Add
-                  </Nav.Link>
+                  </Link>
+                  <Link className={'HeaderLink'} to={'/about'}>
+                    About Us
+                  </Link>
+                  <Link className={'HeaderLink'} to={'/contacts'}>
+                    Contacts
+                  </Link>
                 </Nav>
               </Navbar.Collapse>
             </Container>
