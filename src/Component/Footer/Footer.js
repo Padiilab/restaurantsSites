@@ -28,6 +28,10 @@ export default class Footer extends Component {
           <a href='https://github.com/TonyLDV' target='_blank'>
             Trainee: Anton Liediaiev
           </a>
+          <br />
+          <a href='https://t.me/Oigenius' target='_blank'>
+            QA: Eugene Yakobchuk
+          </a>
         </div>
       </div>
     );

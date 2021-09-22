@@ -80,6 +80,48 @@ export default class ReviewAdding extends Component {
     }
   };
 
+  onEditRestaurant = () => {
+    if (this.state.name && this.state.review) {
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, edit it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          axios
+            .post(
+              `https://restaurants-database.herokuapp.com/api/v1/restaurants/${this.props.editData.id}`,
+              {
+                name: this.state.name,
+                website: this.state.review
+              }
+            )
+            .then((response) => {
+              Swal.fire({
+                title: 'Update!',
+                text: 'Your restaurants has been edited.',
+                icon: 'success',
+                timer: 3000,
+                timerProgressBar: true
+              });
+              this.props.updateListRestaurant();
+              this.props.onBackToHome();
+            });
+        }
+      });
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Fill in all the fields!'
+      });
+    }
+  };
+
   render() {
     return (
       <div className={'contentHome'}>
@@ -136,7 +178,11 @@ export default class ReviewAdding extends Component {
             precision={1}
           />
         </div>
-        <button onClick={this.addReview} type='button' className={'submit btn'}>
+        <button
+          onClick={this.onEditRestaurant}
+          type='button'
+          className={'submit btn'}
+        >
           Add Review
         </button>
         {this.renderAllReview()}

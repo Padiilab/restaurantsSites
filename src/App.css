@@ -68,3 +68,21 @@
 }
 .wrapperLogo:hover {
 }
+
+body::-webkit-scrollbar {
+  width: 12px;
+}
+
+body::-webkit-scrollbar-track {
+  background: none;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: rgb(48, 152, 185);
+  background: radial-gradient(
+    circle,
+    rgba(48, 152, 185, 1) 2%,
+    rgba(252, 70, 107, 1) 89%
+  );
+  border-radius: 15px;
+}

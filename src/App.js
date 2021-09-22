@@ -20,7 +20,7 @@ export default class App extends Component {
   demoAsyncCall() {
     const scene = document.getElementById('sceneForParallax');
     const parallaxInstance = new Parallax(scene);
-    return new Promise((resolve) => setTimeout(() => resolve(), 2500));
+    return new Promise((resolve) => setTimeout(() => resolve(), 250));
   }
 
   render() {

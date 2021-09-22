@@ -1,8 +1,22 @@
 .HeaderLink {
   font-weight: 400;
   font-style: normal;
-  font-size: 20px;
+  font-size: 22px;
   padding-right: 0.5rem;
+  margin-left: 30px;
+  color: #266150;
+  justify-content: center;
+}
+.HeaderLink:hover {
+  text-decoration: underline;
+  color: #cba216;
+}
+
+.Enter {
+  font-weight: 400;
+  font-style: normal;
+  font-size: 20px;
+  position: relative;
   margin-left: 30px;
   color: #266150;
 }
@@ -12,7 +26,6 @@
   display: flex;
   justify-content: center;
   position: sticky;
-
   top: 0;
 }
 .navbarWrapper {
@@ -20,16 +33,23 @@
   width: 100%;
   background-color: #fdf8f5;
   max-width: 1536px;
-  height: 50px;
+  height: 46px;
   max-height: 100px;
 }
 .headerRoute {
   width: 100%;
   max-width: 1536px;
   display: flex;
-  vertical-align: center;
 }
 .logoHeader {
   height: 30px;
   width: 30px;
+}
+#responsive-navbar-nav {
+  background: #fdf8f5;
+  width: auto;
+}
+.mr-auto {
+  justify-content: flex-start;
+  text-align: left;
 }
