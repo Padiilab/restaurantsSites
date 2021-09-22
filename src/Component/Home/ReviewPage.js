@@ -157,12 +157,12 @@ export default class ReviewAdding extends Component {
               }}
               type='input'
               className='form__field'
-              placeholder='Your Name'
-              name='name'
-              id='name'
+              placeholder='Your Review'
+              name='review'
+              id='review'
               required
             />
-            <label htmlFor='name' className='form__label'>
+            <label htmlFor='review' className='form__label'>
               Your Review
             </label>
           </div>

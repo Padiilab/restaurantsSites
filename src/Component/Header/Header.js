@@ -28,9 +28,6 @@ export default class header extends Component {
                   <Link className={'HeaderLink'} to={'/about'}>
                     About Us
                   </Link>
-                  <Link className={'HeaderLink'} to={'/contacts'}>
-                    Contacts
-                  </Link>
                 </Nav>
               </Navbar.Collapse>
             </Container>
