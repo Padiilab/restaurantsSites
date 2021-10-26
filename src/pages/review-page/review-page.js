@@ -19,56 +19,6 @@ export default class ReviewAdding extends Component {
     };
   }
 
-  onUpdateRestaurant = () => {
-    if (this.state.name && this.state.priceRating && this.state.webSite && this.state.location) {
-      Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, update it!',
-      }).then(result => {
-        if (result.isConfirmed) {
-          axios
-            .post(`https://restaurants-database.herokuapp.com/api/v1/restaurants/${this.props.editData.id}`, {
-              name: this.state.name,
-              price_range: this.state.priceRating,
-              location: this.state.location,
-              website: this.state.webSite,
-            })
-            .then(() => {
-              Swal.fire({
-                title: 'Update!',
-                text: 'Your restaurants has been updated.',
-                icon: 'success',
-                timer: 3000,
-                timerProgressBar: true,
-              });
-              this.props.updateListRestaurant();
-              this.props.onBackToHome();
-            });
-        }
-      });
-    } else {
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Fill in all the fields!',
-      });
-    }
-  };
-
-  onInputPriceRating = event => {
-    if (Number(event.currentTarget.value) && Number(event.currentTarget.value) < 6) {
-      this.setState({ priceRating: event.currentTarget.value });
-    } else {
-      this.setState({ priceRating: '' });
-      event.currentTarget.value = '';
-    }
-  };
-
   onEditRestaurant = () => {
     if (this.state.name && this.state.review) {
       Swal.fire({
@@ -165,34 +115,6 @@ export default class ReviewAdding extends Component {
       </div>
     );
   }
-
-  addReview = () => {
-    if (this.state.name) {
-      axios
-        .post(`https://restaurants-database.herokuapp.com/api/v1/restaurants/${this.props.editData.id}/reviews`, {
-          name: this.state.name,
-          feedback_text: this.state.review,
-          stars: parseInt(this.state.starRating),
-        })
-        .then(() => {
-          Swal.fire({
-            title: 'Create!',
-            text: 'Your review has been created.',
-            icon: 'success',
-            timer: 3000,
-            timerProgressBar: true,
-          });
-          this.props.updateListRestaurant();
-          this.props.onBackToHome();
-        });
-    } else {
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Fill "Name" field!',
-      });
-    }
-  };
 
   renderAllReview = () => {
     if (!this.state.allReview) {
