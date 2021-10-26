@@ -37,6 +37,13 @@ export const EditPage = ({ editData, onBackToHome, updateListRestaurant }) => {
               });
               updateListRestaurant();
               onBackToHome();
+            })
+            .catch(() => {
+              Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong!',
+              });
             });
         }
       });
