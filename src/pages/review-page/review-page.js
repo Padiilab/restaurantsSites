@@ -38,7 +38,7 @@ export default class ReviewAdding extends Component {
               location: this.state.location,
               website: this.state.webSite,
             })
-            .then(response => {
+            .then(() => {
               Swal.fire({
                 title: 'Update!',
                 text: 'Your restaurants has been updated.',
@@ -86,7 +86,7 @@ export default class ReviewAdding extends Component {
               name: this.state.name,
               website: this.state.review,
             })
-            .then(response => {
+            .then(() => {
               Swal.fire({
                 title: 'Update!',
                 text: 'Your restaurants has been edited.',
@@ -174,7 +174,7 @@ export default class ReviewAdding extends Component {
           feedback_text: this.state.review,
           stars: parseInt(this.state.starRating),
         })
-        .then(response => {
+        .then(() => {
           Swal.fire({
             title: 'Create!',
             text: 'Your review has been created.',

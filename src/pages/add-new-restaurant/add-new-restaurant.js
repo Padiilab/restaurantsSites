@@ -29,7 +29,7 @@ export const AddNewRestaurant = () => {
               location,
               price_range: priceRating,
             })
-            .then(response => {
+            .then(() => {
               Swal.fire({
                 title: 'Added!',
                 text: 'Your restaurants has been added.',
