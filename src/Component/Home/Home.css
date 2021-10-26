@@ -8,12 +8,12 @@
 }
 
 .contentHome {
-  min-height: calc(100vh - 195px);
+  min-height: calc(100vh - 213px);
   width: 100%;
 }
 
 .containerHome {
-  background-color: #222222;
+  background-color: #131a22;
   min-height: 100%;
   max-width: 1536px;
   box-shadow: 0 0 10px #4f4846;
@@ -158,7 +158,7 @@
 }
 
 .updateList {
-  background: -webkit-linear-gradient(45deg, #ff003c, #c648c8);
+  background: -webkit-linear-gradient(45deg, #ff9900, #efd11b);
   color: white !important;
 }
 
@@ -200,7 +200,7 @@ h2 {
 }
 .cardRest {
   margin: 10px;
-  background-color: #222831;
+  background-color: #232f3e;
   height: 40rem;
   border-radius: 35px;
   display: flex;
@@ -224,15 +224,17 @@ h2 {
   border-radius: 50%;
   border: 5px solid #272133;
   margin-top: 20px;
-  box-shadow: 0 10px 50px rgba(235, 25, 110, 1);
+  box-shadow: 0 10px 50px rgba(255, 153, 0, 1);
 }
 
 .draw-border {
   box-shadow: inset 0 0 0 4px #58cdd1;
   color: #58afd1;
-  -webkit-transition: color 0.25s 0.0833333333s;
-  transition: color 0.25s 0.0833333333s;
+  /*-webkit-transition: color 0.25s 0.0833333333s;*/
+  transition-duration: 0.33s;
+  transition-timing-function: linear;
   position: relative;
+  border-radius: 28px;
 }
 
 .draw-border::before,
@@ -259,16 +261,19 @@ h2 {
 }
 
 .draw-border:hover {
-  color: #ffe593;
+  top: 2px;
+  color: #ff9900;
+  box-shadow: inset 0 0 0 4px #f0d21a;
 }
 
-.draw-border:hover::before,
+/*.draw-border:hover::before,
 .draw-border:hover::after {
-  border-color: #eb196e;
+  border-color: #f0d21a;
   -webkit-transition: border-color 0s, width 0.25s, height 0.25s;
   transition: border-color 0s, width 0.25s, height 0.25s;
   width: 100%;
   height: 100%;
+  border-radius: 28px;
 }
 
 .draw-border:hover::before {
@@ -279,7 +284,7 @@ h2 {
 .draw-border:hover::after {
   -webkit-transition-delay: 0s, 0.25s, 0s;
   transition-delay: 0s, 0.25s, 0s;
-}
+}*/
 
 .btnCard {
   background: none;
@@ -294,7 +299,7 @@ h2 {
 }
 
 .btnCard:focus {
-  outline: 2px dotted #55d7dc;
+  outline: 2px dotted #ff9900;
 }
 
 .social-icons {
@@ -331,7 +336,7 @@ h2 {
   height: 45px;
   border-radius: 100%;
   display: block;
-  background: linear-gradient(45deg, #ff003c, #c648c8);
+  background: linear-gradient(45deg, #ff9900, #efd11b);
   transition: all 265ms ease-out;
 }
 
@@ -344,8 +349,8 @@ h2 {
   transform: scale(2.2);
   -ms-transform: scale(2.2);
   -webkit-transform: scale(2.2);
-  color: #ff003c;
-  background: -webkit-linear-gradient(45deg, #ff003c, #c648c8);
+  color: #efd11b;
+  background: -webkit-linear-gradient(45deg, #ff9900, #efd11b);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   transition: all 265ms ease-in;
@@ -358,7 +363,7 @@ h2 {
   font-size: 1.2em;
 }
 .priceRange {
-  background: linear-gradient(45deg, #ff003c, #c648c8);
+  background: linear-gradient(45deg, #ff9900, #efd11b);
   border-radius: 15px;
   height: 30px;
   width: 30px;
@@ -376,8 +381,14 @@ h2 {
   width: 200px;
 }
 .card_img {
+  margin-top: 15px;
   height: 300px;
   width: 300px;
+  border-radius: 45px;
+}
+.page-item {
+  border: 1px solid;
+  border-radius: 10px;
 }
 
 input:-webkit-autofill,

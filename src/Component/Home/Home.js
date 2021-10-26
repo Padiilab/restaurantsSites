@@ -1,237 +1,48 @@
-import React, { Component } from 'react';
+import 'react-bootstrap';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
+import Rating from '@material-ui/lab/Rating';
+import Tooltip from 'react-bootstrap/Tooltip';
+import React, { useEffect, useState } from 'react';
+import StarBorderIcon from '@material-ui/icons/StarBorder';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import withStyles from '@material-ui/core/styles/withStyles';
+
 import './Home.css';
 import './Home.scss';
-import Header from '../Header/Header';
-import Footer from '../Footer/Footer';
-import axios from 'axios';
-import 'react-bootstrap';
-import Tooltip from 'react-bootstrap/Tooltip';
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
-import AddNewRestaurant from './AddNewRestaurant.js';
-import EditPage from './EditPage';
-import Rating from '@material-ui/lab/Rating';
-import withStyles from '@material-ui/core/styles/withStyles';
-import StarBorderIcon from '@material-ui/icons/StarBorder';
+import { EditPage } from './EditPage';
 import ReviewPage from './ReviewPage';
-import { Link } from 'react-router-dom';
 
 const StyledRating = withStyles({})(Rating);
 
-export default class home extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      listRestaurants: [],
-      isLoading: true
-    };
-  }
+export const Home = () => {
+  const [editData, setEditData] = useState([]);
 
-  onBackToHome = () => {
-    this.setState({ isAddNew: false });
-  };
+  const [isAddNew, setIsAddNew] = useState(false);
 
-  createNewRestaurant = () => {
-    this.setState({ isAddNew: true });
-  };
-  updateListRestaurants = () => {
-    this.setState({ isLoading: true });
+  const [editMode, setEditMode] = useState(false);
+
+  const [isLoading, setIsLoading] = useState(true);
+
+  const [reviewData, setReviewData] = useState(null);
+
+  const [isAddReview, setIsAddReview] = useState(false);
+
+  const [listRestaurants, setListRestaurants] = useState([]);
+
+  useEffect(() => {
     axios
       .get('https://restaurants-database.herokuapp.com/api/v1/restaurants/')
-      .then((response) => {
-        // handle success
-        if (this.state.listRestaurants !== response.data.restaurants) {
-          this.setState({
-            listRestaurants: response.data.restaurants,
-            isLoading: false
-          });
+      .then(response => {
+        if (listRestaurants !== response.data.restaurants) {
+          setListRestaurants(response.data.restaurants);
         }
       })
-      .catch(() => {
-        this.setState({ isLoading: false });
-      });
-  };
+      .finally(() => setIsLoading(false));
+  }, []);
 
-  render() {
-    if (!this.state.isAddNew && !this.state.editMode && !this.state.addReview) {
-      let listRestaurants;
-
-      if (this.state.listRestaurants.length === 0) {
-        axios
-          .get('https://restaurants-database.herokuapp.com/api/v1/restaurants/')
-          .then((response) => {
-            // handle success
-            if (this.state.listRestaurants !== response.data.restaurants) {
-              this.setState({
-                listRestaurants: response.data.restaurants,
-                isLoading: false
-              });
-            }
-          })
-          .catch(() => {
-            this.setState({ isLoading: false });
-          });
-      }
-      let renderList = [];
-      for (let index in this.state.listRestaurants) {
-        renderList.push(
-          <div className='cardRest'>
-            <img
-              src='https://media-cdn.tripadvisor.com/media/photo-s/14/07/c6/eb/elissa-bar-restaurant.jpg'
-              alt='Person'
-              className='card__image'
-            />
-            <p className='card__name'>
-              {this.state.listRestaurants[index].name}
-            </p>
-            <div className='grid-container'>
-              <OverlayTrigger
-                placement='top-start'
-                overlay={<Tooltip className='errorTooltip'>Location</Tooltip>}
-              >
-                <div className='grid-child-posts'>
-                  {this.state.listRestaurants[index].location}
-                </div>
-              </OverlayTrigger>
-
-              <div className='grid-child-followers'>
-                {this.state.listRestaurants[index].reviews_quantity
-                  ? this.state.listRestaurants[index].reviews_quantity
-                  : 0}{' '}
-                review
-              </div>
-            </div>
-            <StyledRating
-              emptyIcon={<StarBorderIcon fontSize='inherit' />}
-              className={'ratingStar'}
-              name='half-rating-read'
-              defaultValue={this.state.listRestaurants[index].rating}
-              precision={0.1}
-              readOnly
-            />
-            <ul className='social-icons'>
-              <OverlayTrigger
-                placement='top-start'
-                overlay={
-                  <Tooltip className='errorTooltip'>price rating</Tooltip>
-                }
-              >
-                <li>
-                  <a>
-                    <p className={'priceRange'}>
-                      {this.state.listRestaurants[index].price_range}
-                    </p>
-                  </a>
-                </li>
-              </OverlayTrigger>
-              <OverlayTrigger
-                placement='top-start'
-                overlay={<Tooltip className='errorTooltip'>Web Site</Tooltip>}
-              >
-                <li>
-                  <a
-                    href={this.state.listRestaurants[index].website}
-                    target={'_blank'}
-                  >
-                    <i className='fas fa-satellite' />
-                  </a>
-                </li>
-              </OverlayTrigger>
-            </ul>
-            <button
-              onClick={() => {
-                this.setState({
-                  addReview: true,
-                  reviewData: this.state.listRestaurants[index]
-                });
-              }}
-              className='btnCard draw-border'
-            >
-              Review
-            </button>
-            <button
-              onClick={() => {
-                this.setState({
-                  editMode: true,
-                  editData: this.state.listRestaurants[index]
-                });
-              }}
-              className='btnCard draw-border'
-            >
-              Edit
-            </button>
-          </div>
-        );
-      }
-      return (
-        <>
-          <div className={'content'}>
-            <Header />
-            <div className={'wrapperHome'}>
-              <div className={'containerHome'}>
-                <div className={'contentHome'}>
-                  <button
-                    onClick={this.updateListRestaurants}
-                    type='button'
-                    className={'updateList btn'}
-                  >
-                    Update list
-                  </button>
-                  <Link to={'/add'} className={'updateList btn'}>
-                    Add
-                  </Link>
-                  {this.spinnerOrRestaurants(renderList)}
-                </div>
-              </div>
-            </div>
-          </div>
-          <Footer />
-        </>
-      );
-    } else if (this.state.addReview) {
-      return (
-        <>
-          <div className={'content'}>
-            <Header />
-            <div className={'wrapperHome'}>
-              <div className={'containerHome'}>
-                <ReviewPage
-                  editData={this.state.reviewData}
-                  updateListRestaurant={this.updateListRestaurants}
-                  onBackToHome={() => {
-                    this.setState({ addReview: false });
-                  }}
-                />
-              </div>
-            </div>
-          </div>
-          <Footer />
-        </>
-      );
-    } else {
-      return (
-        <>
-          <div className={'content'}>
-            <Header />
-            <div className={'wrapperHome'}>
-              <div className={'containerHome'}>
-                <EditPage
-                  editData={this.state.editData}
-                  updateListRestaurant={this.updateListRestaurants}
-                  onBackToHome={() => {
-                    this.setState({ editMode: false });
-                  }}
-                />
-              </div>
-            </div>
-          </div>
-          <Footer />
-        </>
-      );
-    }
-  }
-
-  spinnerOrRestaurants = (renderList) => {
-    if (this.state.isLoading) {
+  const spinnerOrRestaurants = renderList => {
+    if (isLoading) {
       return (
         <div>
           <div className={'mainSpinner spinner-grow text-secondary'} />
@@ -244,7 +55,7 @@ export default class home extends Component {
         return (
           <div className={'contentRest'}>
             <div>
-              <i className='flagForNotFound far fa-flag' />
+              <i className="flagForNotFound far fa-flag" />
               <h2>No restaurants found, please add first</h2>
             </div>
           </div>
@@ -252,4 +63,122 @@ export default class home extends Component {
       }
     }
   };
-}
+
+  const updateListRestaurants = () => {
+    setIsLoading(true);
+    axios
+      .get('https://restaurants-database.herokuapp.com/api/v1/restaurants/')
+      .then(response => {
+        // handle success
+        if (listRestaurants !== response.data.restaurants) {
+          setListRestaurants(response.data.restaurants);
+        }
+      })
+      .finally(() => setIsLoading(false));
+  };
+
+  if (!isAddNew && !editMode && !isAddReview) {
+    let renderList = [];
+    for (let index in listRestaurants) {
+      renderList.push(
+        <div className="cardRest">
+          <img
+            src="https://media-cdn.tripadvisor.com/media/photo-s/14/07/c6/eb/elissa-bar-restaurant.jpg"
+            alt="Person"
+            className="card__image"
+          />
+          <p className="card__name">{listRestaurants[index].name}</p>
+          <div className="grid-container">
+            <OverlayTrigger placement="top-start" overlay={<Tooltip className="errorTooltip">Location</Tooltip>}>
+              <div className="grid-child-posts">{listRestaurants[index].location}</div>
+            </OverlayTrigger>
+
+            <div className="grid-child-followers">
+              {listRestaurants[index].reviews_quantity ? listRestaurants[index].reviews_quantity : 0} review
+            </div>
+          </div>
+          <StyledRating
+            emptyIcon={<StarBorderIcon fontSize="inherit" />}
+            className={'ratingStar'}
+            name="half-rating-read"
+            defaultValue={listRestaurants[index].rating}
+            precision={0.1}
+            readOnly
+          />
+          <ul className="social-icons">
+            <OverlayTrigger placement="top-start" overlay={<Tooltip className="errorTooltip">price rating</Tooltip>}>
+              <li>
+                <a>
+                  <p className={'priceRange'}>{listRestaurants[index].price_range}</p>
+                </a>
+              </li>
+            </OverlayTrigger>
+            <OverlayTrigger placement="top-start" overlay={<Tooltip className="errorTooltip">Web Site</Tooltip>}>
+              <li>
+                <a href={listRestaurants[index].website} target={'_blank'}>
+                  <i className="fas fa-satellite" />
+                </a>
+              </li>
+            </OverlayTrigger>
+          </ul>
+
+          <button
+            onClick={() => {
+              setIsAddReview(true);
+              setReviewData(listRestaurants[index]);
+            }}
+            className="btnCard draw-border">
+            Review
+          </button>
+          <button
+            onClick={() => {
+              setEditMode(true);
+              setEditData(listRestaurants[index]);
+            }}
+            className="btnCard draw-border">
+            Edit
+          </button>
+        </div>,
+      );
+    }
+    return (
+      <>
+        <div className={'contentHome'}>
+          <button onClick={updateListRestaurants} type="button" className={'updateList btn'}>
+            Update list
+          </button>
+          <Link to={'/add'} className={'updateList btn'}>
+            Add
+          </Link>
+          {spinnerOrRestaurants(renderList)}
+        </div>
+      </>
+    );
+  }
+
+  if (isAddReview) {
+    return (
+      <>
+        <ReviewPage
+          editData={reviewData}
+          updateListRestaurant={updateListRestaurants}
+          onBackToHome={() => {
+            setIsAddReview(false);
+          }}
+        />
+      </>
+    );
+  }
+
+  return (
+    <>
+      <EditPage
+        editData={editData}
+        updateListRestaurant={updateListRestaurants}
+        onBackToHome={() => {
+          setEditMode(false);
+        }}
+      />
+    </>
+  );
+};

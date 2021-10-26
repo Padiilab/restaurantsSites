@@ -1,15 +1,18 @@
 import './App.css';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import home from './Component/Home/Home';
-import about from './Component/About/About';
+import Parallax from 'parallax-js';
 import React, { Component } from 'react';
 import logo from './Component/Header/RestView.png';
-import Parallax from 'parallax-js';
-import AddNewRestaurant from './Component/Home/AddNewRestaurant';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+
+import { Home } from './Component/Home/Home';
+import { About } from './Component/About/About';
+import { Header } from './Component/Header/Header';
+import { Footer } from './Component/Footer/Footer';
+import { AddNewRestaurant } from './Component/Home/AddNewRestaurant';
 
 export default class App extends Component {
   state = {
-    loading: true
+    loading: true,
   };
 
   componentDidMount() {
@@ -20,7 +23,7 @@ export default class App extends Component {
   demoAsyncCall() {
     const scene = document.getElementById('sceneForParallax');
     const parallaxInstance = new Parallax(scene);
-    return new Promise((resolve) => setTimeout(() => resolve(), 250));
+    return new Promise(resolve => setTimeout(() => resolve(), 2500));
   }
 
   render() {
@@ -31,21 +34,28 @@ export default class App extends Component {
         <div className={'wrapperPreLoader'}>
           <div id={'sceneForParallax'} className={'wrapperLogo'}>
             <img alt={'logo'} data-depth={'1.5'} src={logo} />
-            <div
-              data-depth={'1'}
-              className={'preLoader spinner-grow text-warning'}
-            />
+            <div data-depth={'1'} className={'preLoader spinner-grow text-warning'} />
           </div>
         </div>
       );
     }
     return (
-      <div className='App'>
+      <div className="App">
         <Router>
           <switch>
-            <Route exact path='/about' component={about} />
-            <Route exact path='/add' component={AddNewRestaurant} />
-            <Route exact path='/' component={home} />
+            <div className={'content'}>
+              <Header />
+              <div className={'wrapperHome'}>
+                <div className={'containerHome'}>
+                  <div className={'contentHome'}>
+                    <Route exact path="/about" component={About} />
+                    <Route exact path="/add" component={AddNewRestaurant} />
+                    <Route exact path="/" component={Home} />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <Footer />
           </switch>
         </Router>
       </div>

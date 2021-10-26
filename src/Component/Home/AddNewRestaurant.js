@@ -1,22 +1,17 @@
-import React, { Component } from 'react';
-import Swal from 'sweetalert2';
 import axios from 'axios';
-import Header from '../Header/Header';
-import Footer from '../Footer/Footer';
+import Swal from 'sweetalert2';
+import { Redirect } from 'react-router';
+import React, { useState } from 'react';
 
-export default class AddNewRestaurant extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+export const AddNewRestaurant = () => {
+  const [name, setName] = useState(null);
+  const [website, setWebsite] = useState(null);
+  const [location, setLocation] = useState(null);
+  const [priceRating, setPriceRating] = useState(null);
+  const [navigateName, setNavigateName] = useState('');
 
-  onCreate = () => {
-    if (
-      this.state.name &&
-      this.state.priceRating &&
-      this.state.webSite &&
-      this.state.location
-    ) {
+  const onCreate = () => {
+    if (name && priceRating && website && location) {
       Swal.fire({
         title: 'Are you sure?',
         text: "You won't be able to revert this!",
@@ -24,26 +19,25 @@ export default class AddNewRestaurant extends Component {
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, added it!'
-      }).then((result) => {
+        confirmButtonText: 'Yes, added it!',
+      }).then(result => {
         if (result.isConfirmed) {
           axios
-            .post(
-              'https://restaurants-database.herokuapp.com/api/v1/restaurants/',
-              {
-                name: this.state.name,
-                price_range: this.state.priceRating,
-                location: this.state.location,
-                website: this.state.webSite
-              }
-            )
-            .then((response) => {
+            .post('https://restaurants-database.herokuapp.com/api/v1/restaurants/', {
+              name,
+              website,
+              location,
+              price_range: priceRating,
+            })
+            .then(response => {
               Swal.fire({
                 title: 'Added!',
                 text: 'Your restaurants has been added.',
                 icon: 'success',
                 timer: 3000,
-                timerProgressBar: true
+                timerProgressBar: true,
+              }).finally(() => {
+                setNavigateName('/');
               });
             });
         }
@@ -52,108 +46,93 @@ export default class AddNewRestaurant extends Component {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: 'Fill in all the fields!'
+        text: 'Fill in all the fields!',
       });
     }
   };
-  onInputPriceRating = (event) => {
-    if (
-      Number(event.currentTarget.value) &&
-      Number(event.currentTarget.value) < 6
-    ) {
-      this.setState({ priceRating: event.currentTarget.value });
+  const onInputPriceRating = event => {
+    if (Number(event.currentTarget.value) && Number(event.currentTarget.value) < 6) {
+      setPriceRating(event.currentTarget.value);
     } else {
-      this.setState({ priceRating: '' });
+      setPriceRating('');
       event.currentTarget.value = '';
     }
   };
 
-  render() {
-    return (
-      <>
-        <div className={'content'}>
-          <Header />
-          <div className={'wrapperHome'}>
-            <div className={'containerHome'}>
-              <div className={'contentHome'}>
-                <div className={'addRestaurantWrapper'}>
-                  <div className='form__group field'>
-                    <input
-                      onInput={(event) => {
-                        this.setState({ name: event.currentTarget.value });
-                      }}
-                      type='input'
-                      className='form__field'
-                      placeholder='Name'
-                      name='name'
-                      id='name'
-                      required
-                    />
-                    <label htmlFor='name' className='form__label'>
-                      Name
-                    </label>
-                  </div>
-                  <div className='form__group field'>
-                    <input
-                      onInput={(event) => {
-                        this.setState({ location: event.currentTarget.value });
-                      }}
-                      type='input'
-                      className='form__field'
-                      placeholder='Location'
-                      name='name'
-                      id='name'
-                      required
-                    />
-                    <label htmlFor='name' className='form__label'>
-                      Location
-                    </label>
-                  </div>
-                  <div className='form__group field'>
-                    <input
-                      onInput={(event) => {
-                        this.setState({ webSite: event.currentTarget.value });
-                      }}
-                      type='input'
-                      className='form__field'
-                      placeholder='Web site'
-                      name='name'
-                      id='name'
-                      required
-                    />
-                    <label htmlFor='name' className='form__label'>
-                      Web site
-                    </label>
-                  </div>
-                  <div className='form__group field'>
-                    <input
-                      maxLength={'1'}
-                      onInput={this.onInputPriceRating}
-                      type='input'
-                      className='form__field'
-                      placeholder='Price rating'
-                      name='name'
-                      id='name'
-                      required
-                    />
-                    <label htmlFor='name' className='form__label'>
-                      Price rating(1-5)
-                    </label>
-                  </div>
-                </div>
-                <button
-                  onClick={this.onCreate}
-                  type='button'
-                  className={'submit btn'}
-                >
-                  Create
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <Footer />
-      </>
-    );
+  if (navigateName) {
+    return <Redirect to={navigateName} />;
   }
-}
+
+  return (
+    <>
+      <div className={'addRestaurantWrapper'}>
+        <div className="form__group field">
+          <input
+            onInput={event => {
+              setName(event.currentTarget.value);
+            }}
+            type="input"
+            className="form__field"
+            placeholder="Name"
+            name="name"
+            id="name"
+            required
+          />
+          <label htmlFor="name" className="form__label">
+            Name
+          </label>
+        </div>
+        <div className="form__group field">
+          <input
+            onInput={event => {
+              setLocation(event.currentTarget.value);
+            }}
+            type="input"
+            className="form__field"
+            placeholder="Location"
+            name="location"
+            id="location"
+            required
+          />
+          <label htmlFor="location" className="form__label">
+            Location
+          </label>
+        </div>
+        <div className="form__group field">
+          <input
+            onInput={event => {
+              setWebsite(event.currentTarget.value);
+            }}
+            type="input"
+            className="form__field"
+            placeholder="Web site"
+            name="website"
+            id="website"
+            required
+          />
+          <label htmlFor="website" className="form__label">
+            Web site
+          </label>
+        </div>
+        <div className="form__group field">
+          <input
+            maxLength={'1'}
+            onInput={onInputPriceRating}
+            type="input"
+            className="form__field"
+            placeholder="Price rating"
+            name="price"
+            id="price"
+            required
+          />
+          <label htmlFor="price" className="form__label">
+            Price rating(1-5)
+          </label>
+        </div>
+      </div>
+      <button onClick={onCreate} type="button" className={'submit btn'}>
+        Create
+      </button>
+    </>
+  );
+};
