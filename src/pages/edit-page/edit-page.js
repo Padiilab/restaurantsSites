@@ -2,7 +2,7 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import React, { useState } from 'react';
 
-export const EditPage = ({ editData, onBackToHome }) => {
+export const EditPage = ({ editData, onBackToHome, updateListRestaurant }) => {
   const [name, setName] = useState(editData.name);
   const [webSite, setWebsite] = useState(editData.website);
   const [location, setLocation] = useState(editData.location);
@@ -21,7 +21,7 @@ export const EditPage = ({ editData, onBackToHome }) => {
       }).then(result => {
         if (result.isConfirmed) {
           axios
-            .post(`https://restaurants-database.herokuapp.com/api/v1/restaurants/${this.props.editData.id}`, {
+            .post(`https://restaurants-database.herokuapp.com/api/v1/restaurants/${editData.id}`, {
               name,
               priceRating,
               location,
@@ -35,8 +35,8 @@ export const EditPage = ({ editData, onBackToHome }) => {
                 timer: 3000,
                 timerProgressBar: true,
               });
-              this.props.updateListRestaurant();
-              this.props.onBackToHome();
+              updateListRestaurant();
+              onBackToHome();
             });
         }
       });
@@ -63,8 +63,8 @@ export const EditPage = ({ editData, onBackToHome }) => {
         axios
           .delete(`https://restaurants-database.herokuapp.com/api/v1/restaurants/${editData.id}`)
           .then(() => {
-            this.props.updateListRestaurant();
-            this.props.onBackToHome();
+            updateListRestaurant();
+            onBackToHome();
             Swal.fire('Deleted!', 'Your file has been deleted.', 'success');
           })
           .catch(() => {

@@ -155,27 +155,23 @@ export const Home = () => {
 
   if (isAddReview) {
     return (
-      <>
-        <ReviewPage
-          editData={reviewData}
-          updateListRestaurant={updateListRestaurants}
-          onBackToHome={() => {
-            setIsAddReview(false);
-          }}
-        />
-      </>
+      <ReviewPage
+        editData={reviewData}
+        updateListRestaurant={updateListRestaurants}
+        onBackToHome={() => {
+          setIsAddReview(false);
+        }}
+      />
     );
   }
 
   return (
-    <>
-      <EditPage
-        editData={editData}
-        updateListRestaurant={updateListRestaurants}
-        onBackToHome={() => {
-          setEditMode(false);
-        }}
-      />
-    </>
+    <EditPage
+      editData={editData}
+      updateListRestaurant={updateListRestaurants}
+      onBackToHome={() => {
+        setEditMode(false);
+      }}
+    />
   );
 };
