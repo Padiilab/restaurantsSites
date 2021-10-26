@@ -11,7 +11,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import './home.css';
 import './home.scss';
 import { EditPage } from '../edit-page';
-import ReviewPage from '../review-page/review-page';
+import { ReviewPage } from '../review-page/review-page';
 
 const StyledRating = withStyles({})(Rating);
 
