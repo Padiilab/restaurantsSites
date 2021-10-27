@@ -27,7 +27,7 @@ export const EditPage = ({ editData, onBackToHome, updateListRestaurant }) => {
       }).then(result => {
         if (result.isConfirmed) {
           axios
-            .post(`https://restaurants-database.herokuapp.com/api/v1/restaurants/${editData.id}`, {
+            .put(`https://restaurants-database.herokuapp.com/api/v1/restaurants/${editData.id}`, {
               name,
               priceRating,
               location,

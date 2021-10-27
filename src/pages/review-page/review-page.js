@@ -75,9 +75,10 @@ export const ReviewPage = ({ editData, onBackToHome, updateListRestaurant }) => 
       }).then(result => {
         if (result.isConfirmed) {
           axios
-            .post(`https://restaurants-database.herokuapp.com/api/v1/restaurants/${editData.id}`, {
+            .post(`https://restaurants-database.herokuapp.com/api/v1/restaurants/${editData.id}/reviews`, {
               name,
-              website: review,
+              stars: starRating,
+              feedback_text: review,
             })
             .then(() => {
               debugger;
