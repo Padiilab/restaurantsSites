@@ -1,0 +1,12 @@
+.progressBar > div {
+  background-color: #efd11b;
+  color: #fff;
+  font-size: 17px;
+  font-weight: bold;
+}
+.filledProgressBar > div {
+  background-color: #38ef7d;
+  color: #fff;
+  font-size: 17px;
+  font-weight: bold;
+}

@@ -1,0 +1,87 @@
+.hover-HeaderLink-animation {
+  display: inline-block;
+  position: relative;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 22px;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+  margin-left: 30px;
+  color: #131a22;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.hover-HeaderLink-animation:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 3px;
+  bottom: 0;
+  left: 0;
+  background-color: #cba216;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.hover-HeaderLink-animation:hover:after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+.activeHeaderLink {
+  color: #cba216 !important;
+}
+
+.headerContainer {
+  vertical-align: center;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  position: sticky;
+  top: 0;
+}
+.navbarWrapper {
+  box-shadow: 0 0 10px #4f4846;
+  width: 100%;
+  background-color: #fdf8f5;
+  max-width: 1536px;
+  height: 68px;
+  max-height: 150px;
+}
+.headerRoute {
+  width: 100%;
+  max-width: 1536px;
+  display: flex;
+}
+.logoHeader {
+  height: 25px;
+  width: 30px;
+}
+.userHeader {
+  width: 40px;
+  justify-content: center;
+}
+.mr-auto {
+  justify-content: flex-start;
+  text-align: left;
+}
+.navbarContainer {
+  justify-content: space-between;
+}
+.userInfo {
+  justify-content: right;
+  position: sticky;
+}
+.navbarRight {
+  justify-content: center;
+  top: 0;
+}
+.navbarLeft {
+  display: flex;
+  justify-content: end;
+}
+.userToggle {
+  box-shadow: none !important;
+}
