@@ -2,11 +2,13 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import { Redirect } from 'react-router';
 import React, { useState } from 'react';
+import { LiveProgress } from '../../components';
 
 export const AddNewRestaurant = () => {
   const [name, setName] = useState(null);
   const [website, setWebsite] = useState(null);
   const [location, setLocation] = useState(null);
+  const [progressNow, setProgressNow] = useState(0);
   const [priceRating, setPriceRating] = useState(null);
   const [navigateName, setNavigateName] = useState('');
 
@@ -53,9 +55,18 @@ export const AddNewRestaurant = () => {
   const onInputPriceRating = event => {
     if (Number(event.currentTarget.value) && Number(event.currentTarget.value) < 6) {
       setPriceRating(event.currentTarget.value);
+      if (event.currentTarget.value && !priceRating) {
+        setProgressNow(progressNow + 1);
+      }
+
+      setPriceRating(event.currentTarget.value);
     } else {
       setPriceRating('');
       event.currentTarget.value = '';
+    }
+
+    if (!event.currentTarget.value && !!priceRating) {
+      setProgressNow(progressNow - 1);
     }
   };
 
@@ -65,10 +76,19 @@ export const AddNewRestaurant = () => {
 
   return (
     <>
+      <LiveProgress now={progressNow} max={4} />
       <div className={'addRestaurantWrapper'}>
         <div className="form__group field">
           <input
             onInput={event => {
+              if (event.currentTarget.value && !name) {
+                setProgressNow(progressNow + 1);
+              }
+
+              if (!event.currentTarget.value) {
+                setProgressNow(progressNow - 1);
+              }
+
               setName(event.currentTarget.value);
             }}
             type="input"
@@ -85,6 +105,14 @@ export const AddNewRestaurant = () => {
         <div className="form__group field">
           <input
             onInput={event => {
+              if (event.currentTarget.value && !location) {
+                setProgressNow(progressNow + 1);
+              }
+
+              if (!event.currentTarget.value) {
+                setProgressNow(progressNow - 1);
+              }
+
               setLocation(event.currentTarget.value);
             }}
             type="input"
@@ -101,6 +129,14 @@ export const AddNewRestaurant = () => {
         <div className="form__group field">
           <input
             onInput={event => {
+              if (event.currentTarget.value && !website) {
+                setProgressNow(progressNow + 1);
+              }
+
+              if (!event.currentTarget.value) {
+                setProgressNow(progressNow - 1);
+              }
+
               setWebsite(event.currentTarget.value);
             }}
             type="input"

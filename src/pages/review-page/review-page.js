@@ -3,6 +3,7 @@ import Swal from 'sweetalert2';
 import React, { useState } from 'react';
 import Rating from '@material-ui/lab/Rating';
 import Tooltip from 'react-bootstrap/Tooltip';
+import { LiveProgress } from '../../components';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -10,10 +11,11 @@ import withStyles from '@material-ui/core/styles/withStyles';
 const StyledRating = withStyles({})(Rating);
 
 export const ReviewPage = ({ editData, onBackToHome, updateListRestaurant }) => {
-  const [name, setName] = useState(editData.name);
+  const [name, setName] = useState('');
   const [review, setReview] = useState('');
   const [starRating, setStarRating] = useState(5);
   const [allReview, setAllReview] = useState(null);
+  const [progressNow, setProgressNow] = useState(0);
 
   const renderAllReview = () => {
     if (!allReview) {
@@ -102,61 +104,76 @@ export const ReviewPage = ({ editData, onBackToHome, updateListRestaurant }) => 
     }
   };
 
-  {
-    return (
-      <div className={'contentHome'}>
-        <button onClick={onBackToHome} type="button" className={'updateList btn'}>
-          Back
-        </button>
-        <div className={'addRestaurantWrapper'}>
-          <div className="form__group field">
-            <input
-              onInput={event => {
-                setName(event.currentTarget.value);
-              }}
-              type="input"
-              className="form__field"
-              placeholder="Your Name"
-              name="name"
-              id="name"
-              required
-            />
-            <label htmlFor="name" className="form__label">
-              Name
-            </label>
-          </div>
+  return (
+    <div className={'contentHome'}>
+      <LiveProgress now={progressNow} max={2} />
+      <button onClick={onBackToHome} type="button" className={'updateList btn'}>
+        Back
+      </button>
+      <div className={'addRestaurantWrapper'}>
+        <div className="form__group field">
+          <input
+            onInput={event => {
+              if (event.currentTarget.value && !name) {
+                setProgressNow(progressNow + 1);
+              }
 
-          <div className="form__group field">
-            <input
-              onBlur={event => {
-                setReview(event.currentTarget.value);
-              }}
-              type="input"
-              className="form__field"
-              placeholder="Your Review"
-              name="review"
-              id="review"
-              required
-            />
-            <label htmlFor="review" className="form__label">
-              Your Review
-            </label>
-          </div>
-          <div className="grid-child-posts">Set your rating :</div>
-          <StyledRating
-            emptyIcon={<StarBorderIcon fontSize="inherit" />}
-            className={'ratingStar'}
-            name="half-rating-read"
-            defaultValue={5}
-            onChange={event => setStarRating(event.currentTarget.value)}
-            precision={1}
+              if (!event.currentTarget.value) {
+                setProgressNow(progressNow - 1);
+              }
+
+              setName(event.currentTarget.value);
+            }}
+            type="input"
+            className="form__field"
+            placeholder="Your Name"
+            name="name"
+            id="name"
+            required
           />
+          <label htmlFor="name" className="form__label">
+            Name
+          </label>
         </div>
-        <button onClick={onEditRestaurant} type="button" className={'submit btn'}>
-          Add Review
-        </button>
-        {renderAllReview()}
+
+        <div className="form__group field">
+          <input
+            onInput={event => {
+              if (event.currentTarget.value && !review) {
+                setProgressNow(progressNow + 1);
+              }
+
+              if (!event.currentTarget.value) {
+                setProgressNow(progressNow - 1);
+              }
+
+              setReview(event.currentTarget.value);
+            }}
+            type="input"
+            className="form__field"
+            placeholder="Your Review"
+            name="review"
+            id="review"
+            required
+          />
+          <label htmlFor="review" className="form__label">
+            Your Review
+          </label>
+        </div>
+        <div className="grid-child-posts">Set your rating :</div>
+        <StyledRating
+          emptyIcon={<StarBorderIcon fontSize="inherit" />}
+          className={'ratingStar'}
+          name="half-rating-read"
+          defaultValue={5}
+          onChange={event => setStarRating(event.currentTarget.value)}
+          precision={1}
+        />
       </div>
-    );
-  }
+      <button onClick={onEditRestaurant} type="button" className={'submit btn'}>
+        Add Review
+      </button>
+      {renderAllReview()}
+    </div>
+  );
 };
