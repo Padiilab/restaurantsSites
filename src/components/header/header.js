@@ -56,7 +56,7 @@ export const Header = () => {
                 />
               </Dropdown.Toggle>
 
-              <Dropdown.Menu>
+              {/*              <Dropdown.Menu>
                 <Form>
                   <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
@@ -74,7 +74,7 @@ export const Header = () => {
                     Submit
                   </Button>
                 </Form>
-              </Dropdown.Menu>
+              </Dropdown.Menu>*/}
             </Dropdown>
           </Container>
         </Navbar>

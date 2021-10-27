@@ -5,5 +5,8 @@
   font-weight: bold;
 }
 .filledProgressBar > div {
-  background: #38ef7d;
+  background-color: #38ef7d;
+  color: #fff;
+  font-size: 17px;
+  font-weight: bold;
 }

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import React, { useState } from 'react';
-import { LiveProgress } from '../../components/progress-bar';
+import { LiveProgress } from '../../components';
 
 export const EditPage = ({ editData, onBackToHome, updateListRestaurant }) => {
   const [name, setName] = useState(editData.name);
@@ -112,8 +112,9 @@ export const EditPage = ({ editData, onBackToHome, updateListRestaurant }) => {
   {
     return (
       <>
-        <div className={'contentHome'}>
+        <div className="contentHome">
           <LiveProgress now={progressNow} max={4} />
+
           <button onClick={onBackToHome} type="button" className={'updateList btn'}>
             Back
           </button>

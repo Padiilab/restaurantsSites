@@ -25,6 +25,7 @@ export const ReviewPage = ({ editData, onBackToHome, updateListRestaurant }) => 
           setAllReview(response.data.reviews);
         });
     }
+
     if (!allReview) {
       return (
         <>
@@ -105,7 +106,7 @@ export const ReviewPage = ({ editData, onBackToHome, updateListRestaurant }) => 
   };
 
   return (
-    <div className={'contentHome'}>
+    <div className="contentHome">
       <LiveProgress now={progressNow} max={2} />
       <button onClick={onBackToHome} type="button" className={'updateList btn'}>
         Back
