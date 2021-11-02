@@ -199,6 +199,7 @@ h2 {
   color: #4f4846;
 }
 .cardRest {
+  justify-content: space-between;
   margin: 10px;
   background-color: #232f3e;
   height: 40rem;
