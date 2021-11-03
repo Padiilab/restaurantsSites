@@ -1,8 +1,10 @@
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { Redirect } from 'react-router';
-import React, { useState } from 'react';
 import { LiveProgress } from '../../components';
+import React, { isValidElement, useState } from 'react';
+
+import './add-new-restaurant.css';
 
 export const AddNewRestaurant = () => {
   const [name, setName] = useState(null);
@@ -11,9 +13,11 @@ export const AddNewRestaurant = () => {
   const [progressNow, setProgressNow] = useState(0);
   const [priceRating, setPriceRating] = useState(null);
   const [navigateName, setNavigateName] = useState('');
+  const [drag, setDrag] = useState(false);
+  const [image, setImage] = useState(null);
 
   const onCreate = () => {
-    if (name && priceRating && website && location) {
+    if (name && priceRating && website && location && drag) {
       Swal.fire({
         title: 'Are you sure?',
         text: "You won't be able to revert this!",
@@ -74,10 +78,60 @@ export const AddNewRestaurant = () => {
     return <Redirect to={navigateName} />;
   }
 
+  function dragStartHandler(e) {
+    e.preventDefault();
+    setDrag(true);
+  }
+  function dragLeaveHandler(e) {
+    e.preventDefault();
+    setDrag(false);
+  }
+  function onDropHandler(e) {
+    e.preventDefault();
+    let files = [...e.dataTransfer.files];
+    console.log(files);
+    setImage(files);
+    /*files.map(file => <img srs={file} />);*/
+    /*    const formData = new FormData();
+    formData.append('file', files[0]);
+    formData.append('file', files[0]);
+    axios.post('url', formData);*/
+
+    setDrag(false);
+  }
   return (
     <>
       <LiveProgress now={progressNow} max={4} />
       <div className={'addRestaurantWrapper'}>
+        <div className="form__group field">
+          {drag ? (
+            <div
+              className="drop-area"
+              onDragStart={e => dragStartHandler(e)}
+              onDragLeave={e => dragLeaveHandler(e)}
+              onDragOver={e => dragStartHandler(e)}
+              onDrop={e => onDropHandler(e)}>
+              <input className="drop-zone" id="actual-btn" type="file" accept=".jpg,.png" />
+              <label htmlFor="actual-btn">Drop the file</label>
+            </div>
+          ) : (
+            <div
+              className="drop-area"
+              onDragStart={e => dragStartHandler(e)}
+              onDragLeave={e => dragLeaveHandler(e)}
+              onDragOver={e => dragStartHandler(e)}>
+              <input className="drop-zone" id="actual-btn" type="file" accept=".jpg,.png" />
+              <label className="zone" htmlFor="actual-btn">
+                Choose Image
+              </label>
+            </div>
+          )}
+          <label htmlFor="name" className="form__label">
+            Image
+          </label>
+          <img src={image} />
+        </div>
+
         <div className="form__group field">
           <input
             onInput={event => {

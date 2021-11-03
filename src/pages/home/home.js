@@ -85,59 +85,55 @@ export const Home = () => {
             className="card__image"
           />
           <p className="card__name">{listRestaurants[index].name}</p>
+          <div className="grid-container">
+            <OverlayTrigger placement="top-start" overlay={<Tooltip className="errorTooltip">Location</Tooltip>}>
+              <div className="grid-child-posts">{listRestaurants[index].location}</div>
+            </OverlayTrigger>
 
-          <div>
-            <div className="grid-container">
-              <OverlayTrigger placement="top-start" overlay={<Tooltip className="errorTooltip">Location</Tooltip>}>
-                <div className="grid-child-posts">{listRestaurants[index].location}</div>
-              </OverlayTrigger>
-
-              <div className="grid-child-followers">
-                {listRestaurants[index].reviews_quantity ? listRestaurants[index].reviews_quantity : 0} review
-              </div>
+            <div className="grid-child-followers">
+              {listRestaurants[index].reviews_quantity ? listRestaurants[index].reviews_quantity : 0} review
             </div>
-            <StyledRating
-              emptyIcon={<StarBorderIcon fontSize="inherit" />}
-              className={'ratingStar'}
-              name="half-rating-read"
-              defaultValue={listRestaurants[index].rating}
-              precision={0.1}
-              readOnly
-            />
-            <ul className="social-icons">
-              <OverlayTrigger placement="top-start" overlay={<Tooltip className="errorTooltip">price rating</Tooltip>}>
-                <li>
-                  <a>
-                    <p className={'priceRange'}>{listRestaurants[index].price_range}</p>
-                  </a>
-                </li>
-              </OverlayTrigger>
-              <OverlayTrigger placement="top-start" overlay={<Tooltip className="errorTooltip">Web Site</Tooltip>}>
-                <li>
-                  <a href={listRestaurants[index].website} target={'_blank'}>
-                    <i className="fas fa-satellite" />
-                  </a>
-                </li>
-              </OverlayTrigger>
-            </ul>
-
-            <button
-              onClick={() => {
-                setIsAddReview(true);
-                setReviewData(listRestaurants[index]);
-              }}
-              className="btnCard draw-border">
-              Review
-            </button>
-            <button
-              onClick={() => {
-                setEditMode(true);
-                setEditData(listRestaurants[index]);
-              }}
-              className="btnCard draw-border">
-              Edit
-            </button>
           </div>
+          <StyledRating
+            emptyIcon={<StarBorderIcon fontSize="inherit" />}
+            className={'ratingStar'}
+            name="half-rating-read"
+            defaultValue={listRestaurants[index].rating}
+            precision={0.1}
+            readOnly
+          />
+          <ul className="social-icons">
+            <OverlayTrigger placement="top-start" overlay={<Tooltip className="errorTooltip">price rating</Tooltip>}>
+              <li>
+                <a>
+                  <p className={'priceRange'}>{listRestaurants[index].price_range}</p>
+                </a>
+              </li>
+            </OverlayTrigger>
+            <OverlayTrigger placement="top-start" overlay={<Tooltip className="errorTooltip">Web Site</Tooltip>}>
+              <li>
+                <a href={listRestaurants[index].website} target={'_blank'}>
+                  <i className="fas fa-satellite" />
+                </a>
+              </li>
+            </OverlayTrigger>
+          </ul>
+          <button
+            onClick={() => {
+              setIsAddReview(true);
+              setReviewData(listRestaurants[index]);
+            }}
+            className="btnCard draw-border">
+            Review
+          </button>
+          <button
+            onClick={() => {
+              setEditMode(true);
+              setEditData(listRestaurants[index]);
+            }}
+            className="btnCard draw-border">
+            Edit
+          </button>
         </div>,
       );
     }

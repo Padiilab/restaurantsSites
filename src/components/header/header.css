@@ -12,26 +12,27 @@
   text-decoration: none;
 }
 
-.hover-HeaderLink-animation:after {
+.hover-HeaderLink-animation::before {
   content: '';
   position: absolute;
-  width: 100%;
-  transform: scaleX(0);
-  height: 3px;
+  width: 0;
+  height: 2px;
   bottom: 0;
   left: 0;
-  background-color: #cba216;
-  transform-origin: bottom right;
-  transition: transform 0.25s ease-out;
+  background-color: #fff;
+  visibility: hidden;
+  transition: all 0.3s ease-in-out;
 }
 
-.hover-HeaderLink-animation:hover:after {
+/*.hover-HeaderLink-animation:hover:after {
   transform: scaleX(1);
   transform-origin: bottom left;
-}
+  text-decoration: none;
+}*/
 
 .activeHeaderLink {
   color: #cba216 !important;
+  text-decoration: none;
 }
 
 .headerContainer {
@@ -69,6 +70,7 @@
 }
 .navbarContainer {
   justify-content: space-between;
+  background: #fdf8f5;
 }
 .userInfo {
   justify-content: right;
@@ -84,4 +86,8 @@
 }
 .userToggle {
   box-shadow: none !important;
+  display: flow-root;
+}
+.navbarToggle {
+  min-height: 52px;
 }
