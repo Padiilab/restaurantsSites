@@ -199,9 +199,10 @@ h2 {
   color: #4f4846;
 }
 .cardRest {
+  justify-content: space-between;
   margin: 10px;
   background-color: #232f3e;
-  height: 40rem;
+  height: 42rem;
   border-radius: 35px;
   display: flex;
   flex-direction: column;
@@ -212,7 +213,7 @@ h2 {
 
 .card__name {
   margin-top: 15px;
-  font-size: 1.5em;
+  font-size: 1.7em;
 }
 .grid-child-posts {
   color: white;
@@ -265,26 +266,6 @@ h2 {
   color: #ff9900;
   box-shadow: inset 0 0 0 4px #f0d21a;
 }
-
-/*.draw-border:hover::before,
-.draw-border:hover::after {
-  border-color: #f0d21a;
-  -webkit-transition: border-color 0s, width 0.25s, height 0.25s;
-  transition: border-color 0s, width 0.25s, height 0.25s;
-  width: 100%;
-  height: 100%;
-  border-radius: 28px;
-}
-
-.draw-border:hover::before {
-  -webkit-transition-delay: 0s, 0s, 0.25s;
-  transition-delay: 0s, 0s, 0.25s;
-}
-
-.draw-border:hover::after {
-  -webkit-transition-delay: 0s, 0.25s, 0s;
-  transition-delay: 0s, 0.25s, 0s;
-}*/
 
 .btnCard {
   background: none;
@@ -389,6 +370,10 @@ h2 {
 .page-item {
   border: 1px solid;
   border-radius: 10px;
+}
+
+a:hover {
+  text-underline: none;
 }
 
 input:-webkit-autofill,

@@ -1,8 +1,11 @@
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { Redirect } from 'react-router';
-import React, { useState } from 'react';
+import { DropArea } from '../../components';
 import { LiveProgress } from '../../components';
+import React, { useCallback, useState } from 'react';
+
+import './add-new-restaurant.css';
 
 export const AddNewRestaurant = () => {
   const [name, setName] = useState(null);
@@ -78,6 +81,13 @@ export const AddNewRestaurant = () => {
     <>
       <LiveProgress now={progressNow} max={4} />
       <div className={'addRestaurantWrapper'}>
+        <div className="form__group field">
+          <label className="form__label" htmlFor="name">
+            Image
+          </label>
+          <DropArea />
+        </div>
+
         <div className="form__group field">
           <input
             onInput={event => {
