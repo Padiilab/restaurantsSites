@@ -81,6 +81,7 @@ export const ReviewPage = ({ editData, onBackToHome, updateListRestaurant }) => 
               feedback_text: review,
             })
             .then(() => {
+              debugger;
               Swal.fire({
                 title: 'Update!',
                 text: 'Your restaurants has been edited.',
