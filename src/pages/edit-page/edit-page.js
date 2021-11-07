@@ -118,7 +118,6 @@ export const EditPage = ({ editData, onBackToHome, updateListRestaurant }) => {
           <button onClick={onBackToHome} type="button" className={'updateList btn'}>
             Back
           </button>
-
           <div className={'addRestaurantWrapper'}>
             <img
               src="https://media-cdn.tripadvisor.com/media/photo-s/14/07/c6/eb/elissa-bar-restaurant.jpg"
