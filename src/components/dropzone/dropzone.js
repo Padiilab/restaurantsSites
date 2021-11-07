@@ -31,7 +31,7 @@ export const DropArea = () => {
 
   return (
     <>
-      <Dropzone onDrop={onDrop} /*onDrop={acceptedFiles => console.log(acceptedFiles)}*/>
+      <Dropzone onDrop={onDrop} accept={'image/*'}>
         {({ getRootProps, getInputProps }) => (
           <section className="drop-area">
             <div {...getRootProps()}>

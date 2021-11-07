@@ -39,18 +39,6 @@ li {
   justify-content: center;
 }
 
-.removeIcon {
-  position: absolute;
-  background: none;
-  background: rgb(193, 189, 189);
-  color: #ffffff;
-  border: none;
-  border-radius: 10em;
-  margin-top: 15px;
-  top: 15px;
-  right: 25px;
-}
-
 .remove {
   position: absolute;
   top: 30px;
