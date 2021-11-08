@@ -1,9 +1,9 @@
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { Redirect } from 'react-router';
-import { DropArea } from '../../components';
+import { DropZone } from '../../components';
 import { LiveProgress } from '../../components';
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 
 import './add-new-restaurant.css';
 
@@ -85,7 +85,7 @@ export const AddNewRestaurant = () => {
           <label className="form__label" htmlFor="name">
             Image
           </label>
-          <DropArea />
+          <DropZone />
         </div>
 
         <div className="form__group field">
