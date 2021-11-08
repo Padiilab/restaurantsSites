@@ -1,9 +1,6 @@
 
 A
 public/index.html,f\4\f43ecdf8d666ee908aacce037b4cd72159e4741b
-:
-
-.gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
 =
 src/index.css,c\5\c5d38a62d1faae90a2acaa34b79a7ef365c917e4
 ?
@@ -20,8 +17,6 @@ O
 src/components/footer/footer.js,0\a\0a5183bd20e8c53764af39d1a629ede75dd0034c
 O
 src/components/header/header.js,4\9\49314da7629fdb2d71c90fb10a9526bb763c2609
-b
-2src/pages/add-new-restaurant/add-new-restaurant.js,a\1\a1d9aee019f343a62275125bbb5225f1d6c7a066
 <
 .eslintcache,2\1\21d5732e90750915458158e179e86c3b1690252c
 P
