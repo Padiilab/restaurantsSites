@@ -1,7 +1,7 @@
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { Redirect } from 'react-router';
-import { DropArea } from '../../components';
+import { DropZone } from '../../components';
 import { LiveProgress } from '../../components';
 import React, { useCallback, useState } from 'react';
 
@@ -85,7 +85,7 @@ export const AddNewRestaurant = () => {
           <label className="form__label" htmlFor="name">
             Image
           </label>
-          <DropArea />
+          <DropZone />
         </div>
 
         <div className="form__group field">
@@ -106,6 +106,7 @@ export const AddNewRestaurant = () => {
             placeholder="Name"
             name="name"
             id="name"
+            maxLength={30}
             required
           />
           <label htmlFor="name" className="form__label">
@@ -130,6 +131,7 @@ export const AddNewRestaurant = () => {
             placeholder="Location"
             name="location"
             id="location"
+            maxLength={30}
             required
           />
           <label htmlFor="location" className="form__label">
@@ -154,6 +156,7 @@ export const AddNewRestaurant = () => {
             placeholder="Web site"
             name="website"
             id="website"
+            maxLength={20}
             required
           />
           <label htmlFor="website" className="form__label">

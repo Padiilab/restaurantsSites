@@ -202,7 +202,7 @@ h2 {
   justify-content: space-between;
   margin: 10px;
   background-color: #232f3e;
-  height: 42rem;
+  height: 45rem;
   border-radius: 35px;
   display: flex;
   flex-direction: column;
@@ -214,9 +214,13 @@ h2 {
 .card__name {
   margin-top: 15px;
   font-size: 1.7em;
+  word-break: break-all;
+  padding: 0px 15px;
 }
 .grid-child-posts {
   color: white;
+  padding: 0px 10px;
+  word-break: break-all;
 }
 .card__image {
   transition: width 2s, height 2s, background-color 2s, transform 1.5s;
@@ -294,6 +298,7 @@ h2 {
   margin: 0.15em;
   position: relative;
   font-size: 1em;
+  padding: 0px 2px;
 }
 
 .social-icons i {

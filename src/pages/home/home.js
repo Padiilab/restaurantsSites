@@ -105,6 +105,7 @@ export const Home = () => {
               precision={0.1}
               readOnly
             />
+
             <ul className="social-icons">
               <OverlayTrigger placement="top-start" overlay={<Tooltip className="errorTooltip">price rating</Tooltip>}>
                 <li>
@@ -122,7 +123,7 @@ export const Home = () => {
                 </li>
               </OverlayTrigger>
             </ul>
-
+            <br />
             <button
               onClick={() => {
                 setIsAddReview(true);

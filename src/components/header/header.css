@@ -97,3 +97,13 @@
 .navbarToggle {
   min-height: 52px;
 }
+
+.enter {
+  right: -31px !important;
+  left: unset;
+  background: #fdf8f5 !important;
+  border: none !important;
+}
+
+.emailForm {
+}

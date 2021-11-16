@@ -144,6 +144,7 @@ export const EditPage = ({ editData, onBackToHome, updateListRestaurant }) => {
                 placeholder="name"
                 name="name"
                 id="name"
+                maxLength={30}
                 required
               />
               <label htmlFor="name" className="form__label">
@@ -169,6 +170,7 @@ export const EditPage = ({ editData, onBackToHome, updateListRestaurant }) => {
                 placeholder="Location"
                 name="location"
                 id="location"
+                maxLength={30}
                 required
               />
               <label htmlFor="location" className="form__label">
@@ -194,6 +196,7 @@ export const EditPage = ({ editData, onBackToHome, updateListRestaurant }) => {
                 placeholder="Web site"
                 name="website"
                 id="website"
+                maxLength={15}
                 required
               />
               <label htmlFor="website" className="form__label">

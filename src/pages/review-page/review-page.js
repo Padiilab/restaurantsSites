@@ -130,6 +130,7 @@ export const ReviewPage = ({ editData, onBackToHome, updateListRestaurant }) => 
             placeholder="Your Name"
             name="name"
             id="name"
+            maxLength={25}
             required
           />
           <label htmlFor="name" className="form__label">
@@ -155,6 +156,7 @@ export const ReviewPage = ({ editData, onBackToHome, updateListRestaurant }) => 
             placeholder="Your Review"
             name="review"
             id="review"
+            maxLength={150}
             required
           />
           <label htmlFor="review" className="form__label">

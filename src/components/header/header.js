@@ -44,13 +44,43 @@ export const Header = () => {
               </Nav>
 
               <Dropdown>
-                <Dropdown.Toggle variant={'transparent'} size="sm" className="userToggle" autoClose="outside">
+                <Dropdown.Toggle variant={'transparent'} size="sm" className="userToggle" autoClose={false}>
                   <img
                     alt="userHeader"
                     className={'userHeader'}
                     src="http://www.jma.duq.edu/users/ribeaua/pub/jma260/images/profile.png"
                   />
                 </Dropdown.Toggle>
+                <div className="enter">
+                  <Dropdown.Menu className="enter">
+                    <div className="emailForm">
+                      <Dropdown.Item href="#">
+                        <div className="form-group">
+                          <label htmlFor="exampleInputEmail1">Email address</label>
+                          <input
+                            type="email"
+                            className="form-control"
+                            id="exampleInputEmail1"
+                            aria-describedby="emailHelp"
+                            placeholder="Enter email"
+                          />
+                        </div>
+                        <div className="form-group">
+                          <label htmlFor="exampleInputPassword1">Password</label>
+                          <input
+                            type="password"
+                            className="form-control"
+                            id="exampleInputPassword1"
+                            placeholder="Password"
+                          />
+                        </div>
+                        <button type="submit" className="btn btn-primary">
+                          Submit
+                        </button>
+                      </Dropdown.Item>
+                    </div>
+                  </Dropdown.Menu>
+                </div>
               </Dropdown>
             </Navbar.Collapse>
           </Container>
