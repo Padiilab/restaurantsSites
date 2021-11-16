@@ -216,6 +216,7 @@ h2 {
 }
 .grid-child-posts {
   color: white;
+  word-break: break-all;
 }
 .card__image {
   transition: width 2s, height 2s, background-color 2s, transform 1.5s;
