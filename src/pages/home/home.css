@@ -233,9 +233,8 @@ h2 {
 }
 
 .draw-border {
-  box-shadow: inset 0 0 0 4px #58cdd1;
+  box-shadow: inset 0 0 0 4px #24c9cb;
   color: #58afd1;
-  /*-webkit-transition: color 0.25s 0.0833333333s;*/
   transition-duration: 0.33s;
   transition-timing-function: linear;
   position: relative;
