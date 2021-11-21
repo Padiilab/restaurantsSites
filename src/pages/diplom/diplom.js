@@ -8,8 +8,12 @@ export const Diplom = () => {
     const [arduinoData, setArduinoData] = useState(null)
 
     useEffect(async ()=>{
+
         setArduinoData((await axios
             .get('http://restaurants-viewer-api.herokuapp.com/arduino/temp')).data)
+
+        setInterval(async ()=>{setArduinoData((await axios
+            .get('http://restaurants-viewer-api.herokuapp.com/arduino/temp')).data)},10000)
     },[])
 
     return <div className='temp-wrapper'><div className='temp-container'>
