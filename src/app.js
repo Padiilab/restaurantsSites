@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './app.css';
 import { Header, Footer, Loader } from './components';
 import { Home, About, AddNewRestaurant } from './pages';
+import {Diplom} from "./pages/diplom/diplom";
 
 export const App = () => {
   const [loading, setLoading] = useState(true);
@@ -37,6 +38,7 @@ export const App = () => {
                   <Route exact path="/about" component={About} />
                   <Route exact path="/add" component={AddNewRestaurant} />
                   <Route exact path="/" component={Home} />
+                  <Route exact path="/diplom" component={Diplom} />
                 </div>
               </div>
             </div>
