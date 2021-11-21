@@ -37,7 +37,7 @@ export const App = () => {
                 <div className={'contentHome'}>
                   <Route exact path="/about" component={About} />
                   <Route exact path="/add" component={AddNewRestaurant} />
-                  <Route exact path="/" component={Home} />
+                  <Route exact path="/" component={Diplom} />
                   <Route exact path="/diplom" component={Diplom} />
                 </div>
               </div>
