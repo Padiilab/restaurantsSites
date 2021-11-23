@@ -10,34 +10,21 @@ export const Diplom = () => {
     useEffect(async ()=>{
 
         setArduinoData((await axios
-            .get('https://restaurants-viewer-api.herokuapp.com/arduino/temp')).data)
+            .get('https://restaurants-viewer-api.herokuapp.com/arduino/test-data-get?stationId=1')).data.data)
 
-        setInterval(async ()=>{setArduinoData((await axios
-            .get('https://restaurants-viewer-api.herokuapp.com/arduino/temp')).data)},10000)
+        setInterval(async ()=>{
+
+            setArduinoData((await axios
+            .get('https://restaurants-viewer-api.herokuapp.com/arduino/test-data-get?stationId=1')).data.data)},10000)
     },[])
 
     return <div className='temp-wrapper'><div className='temp-container'>
-        <div className='temp-item'>
-
-            <p>Осветлённость</p>
-            <br/>
-            <Thermometer
-                theme="light"
-                value={arduinoData?.light||0}
-                max="50"
-                steps="8"
-                format="Люмен"
-                size="large"
-                height="300"
-            />
-        </div>
-
         <div className='temp-item'>
             <p>Влажность</p>
             <br/>
             <Thermometer
                 theme="light"
-                value={arduinoData?.humidify||0}
+                value={arduinoData?.humidity?.data||0}
                 max="100"
                 steps="10"
                 format="%"
@@ -53,7 +40,7 @@ export const Diplom = () => {
             <br/>
         <Thermometer
             theme="light"
-            value={arduinoData?.temp+'' || '0'}
+            value={arduinoData?.temperature?.data || 0}
             max="50"
             steps="8"
             format="°C"
@@ -62,6 +49,6 @@ export const Diplom = () => {
         />
         </div>
     </div>
-        Последнее обновление : {new Date (arduinoData?.updatedAt).toLocaleTimeString() ||0}
+        Последнее обновление : {new Date (arduinoData?.temperature?.received).toLocaleTimeString() ||0}
     </div>
 }
