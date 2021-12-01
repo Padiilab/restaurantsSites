@@ -5,7 +5,15 @@ import axios from "axios";
 import './diplom.css'
 
 export const Diplom = () => {
+    const  sunImage = 'https://raw.githubusercontent.com/KevinMellott91/react-weather-display/master/images/sunny.png'
+    const showImage ='https://raw.githubusercontent.com/KevinMellott91/react-weather-display/master/images/snow.png'
+    const cloudyImage='https://raw.githubusercontent.com/KevinMellott91/react-weather-display/master/images/cloudy.png'
+
     const [arduinoData, setArduinoData] = useState(null)
+
+    const temp = arduinoData?.temperature?.data || 0;
+
+    const backgroundImage =temp>10 ? sunImage : temp < 0 ? showImage : cloudyImage;
 
     useEffect(async ()=>{
 
@@ -19,7 +27,7 @@ export const Diplom = () => {
     },[])
 
     return <div className='temp-wrapper'><div className='temp-container'>
-        <div className='temp-item'>
+        {/*<div className='temp-item'>
             <p>Влажность</p>
             <br/>
             <Thermometer
@@ -32,23 +40,30 @@ export const Diplom = () => {
                 height="300"
             />
         </div>
-
+*/}
 
 
         <div className='temp-item'>
             <p>температура</p>
             <br/>
-        <Thermometer
+
+            <div className='temp-new-wrapper'>
+            {<img className='temperature-image' src={backgroundImage}/>}
+            <div className='temp-value'>{temp}°</div>
+            </div>
+        {/*<Thermometer
             theme="light"
-            value={arduinoData?.temperature?.data || 0}
+            value={temp}
             max="50"
             steps="8"
             format="°C"
             size="large"
             height="300"
-        />
+        />*/}
         </div>
     </div>
+        <p className='diplom-footer'>
         Последнее обновление : {new Date (arduinoData?.temperature?.received).toLocaleTimeString() ||0}
+        </p>
     </div>
 }

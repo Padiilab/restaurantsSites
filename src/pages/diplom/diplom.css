@@ -1,5 +1,6 @@
 .temp-container {
-    background-color: white;
+    color: white;
+    font-size: 20px;
     height: 100%;
     padding-top: 50px;
     padding-bottom: 50px;
@@ -9,10 +10,32 @@
 }
 
 .temp-wrapper{
-    background-color: white;
     padding-bottom: 40px;
 }
 
 .temp-item {
     margin-right: 60px;
+}
+
+.temperature-image {
+    height: 240px;
+    width: 240px;
+}
+
+.temp-new-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.temp-value{
+    position: absolute;
+    text-shadow: 3px 3px #111111;
+    color: white;
+    font-size: 40px;
+}
+
+.diplom-footer{
+    color: white;
 }
