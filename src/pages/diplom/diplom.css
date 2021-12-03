@@ -1,5 +1,4 @@
 .temp-container {
-    color: white;
     font-size: 20px;
     height: 100%;
     padding-top: 50px;
@@ -11,6 +10,7 @@
 
 .temp-wrapper{
     padding-bottom: 40px;
+    background: white;
 }
 
 .temp-item {
@@ -37,5 +37,4 @@
 }
 
 .diplom-footer{
-    color: white;
 }
